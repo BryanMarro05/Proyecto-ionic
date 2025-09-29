@@ -1,27 +1,270 @@
-#container {
+.home-content {
+  --background: #0a141a;
+  background-color: var(--background);
+  color: #f5f5f5;
+  font-family: 'Playfair Display', serif;
+
+  h2 {
+    color: #e8d9c5;
+    font-weight: 700;
+    margin: 30px 0 20px;
+    text-align: center;
+    position: relative;
+    &::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 2px;
+      background: #e63946;
+      margin: 10px auto;
+    }
+  }
+
+  p {
+    color: #e8d9c5;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    font-weight: 300;
+  }
+}
+
+/* === Hero Section === */
+.hero {
   text-align: center;
+  padding: 40px 20px;
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  .main-logo {
+    max-width: 300px;
+    width: 100%;
+    margin: 0 auto 20px;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
+  }
+
+  .hero-tagline {
+    font-size: 1.4rem;
+    font-style: italic;
+    color: #ffb703;
+    margin: 15px 0 30px;
+    letter-spacing: 1px;
+  }
+
+  .hero-buttons {
+    max-width: 300px;
+    margin: 0 auto;
+
+    ion-button {
+      margin: 8px 0;
+      border-radius: 30px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    ion-button[color="primary"] {
+      --background: #e63946;
+      --background-hover: #d62828;
+      --color: white;
+    }
+
+    ion-button[color="secondary"] {
+      --background: #ffb703;
+      --background-hover: #ffd166;
+      --color: #000;
+    }
+  }
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+/* === About === */
+.about {
+  padding: 0 20px 30px;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
+/* === Specialties === */
+.specialties {
+  padding: 20px;
+  background: rgba(10, 20, 26, 0.7);
+  margin-bottom: 30px;
 
-  color: #8c8c8c;
+  .dish-card {
+    background: #1a2a36;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 15px 0;
+    text-align: center;
+    border: 1px solid #e63946;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 
-  margin: 0;
+    .dish-icon {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      color: #ffb703;
+      margin: 10px 0;
+    }
+  }
 }
 
-#container a {
-  text-decoration: none;
+/* === Gallery === */
+.gallery {
+  padding: 0 20px 30px;
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+
+    .gallery-item {
+      height: 120px;
+      background: linear-gradient(45deg, #e63946, #ffb703);
+      border-radius: 8px;
+      opacity: 0.8;
+    }
+  }
+}
+
+/* === Testimonials === */
+.testimonials {
+  padding: 0 20px 30px;
+
+  .testimonial {
+    background: #1a2a36;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 12px;
+    border-left: 4px solid #e63946;
+
+    p {
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    span {
+      color: #ffb703;
+      font-weight: bold;
+    }
+  }
+}
+
+/* === Info (Location & Hours) === */
+.info {
+  padding: 0 20px 30px;
+
+  .info-item {
+    display: flex;
+    align-items: flex-start;
+    margin: 15px 0;
+    color: #e8d9c5;
+
+    ion-icon {
+      font-size: 24px;
+      color: #ffb703;
+      margin-right: 12px;
+      margin-top: 4px;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+/* === Final CTA === */
+.final-cta {
+  text-align: center;
+  padding: 30px 20px;
+  background: rgba(230, 57, 70, 0.1);
+  margin: 30px 0;
+
+  h2 {
+    color: #ffb703;
+    margin-bottom: 20px;
+  }
+
+  ion-button {
+    max-width: 300px;
+    margin: 0 auto;
+    --background: #e63946;
+    --background-hover: #d62828;
+    --color: white;
+    border-radius: 30px;
+  }
+}
+
+/* === Footer Decoration === */
+.footer-decoration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  margin-top: 20px;
+
+  .swirl {
+    width: 60px;
+    height: 20px;
+    background: linear-gradient(45deg, #ffb703, #ffcc00);
+    clip-path: path('M0,10 Q15,0 30,10 T60,10');
+  }
+
+  .diamond {
+    width: 12px;
+    height: 12px;
+    background: #e63946;
+    transform: rotate(45deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero .main-logo {
+    max-width: 250px;
+  }
+
+  .specialties .dish-card,
+  .testimonials .testimonial {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+}
+
+/* === Gallery === */
+.gallery {
+  padding: 0 20px 30px;
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+
+    .gallery-item {
+      height: 180px;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+        filter: brightness(0.9);
+
+        &:hover {
+          transform: scale(1.05);
+          filter: brightness(1);
+        }
+      }
+    }
+  }
 }

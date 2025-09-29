@@ -1,20 +1,110 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+  <ion-toolbar color="dark">
+    <ion-title>Charlie Boy Pizza & Grill</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="home-content">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="logo-container">
+      <img src="assets/charlie.jpg" alt="Charlie Boy Pizza & Grill" class="main-logo">
+    </div>
+    <p class="hero-tagline">Where flavor meets tradition.</p>
+    <div class="hero-buttons">
+      <ion-button expand="block" color="primary" routerLink="#">
+        View Our Menu
+      </ion-button>
+      <ion-button expand="block" color="secondary" routerLink="#">
+        Order Online
+      </ion-button>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about">
+    <h2>About Charlie Boy</h2>
+    <p>
+      Founded in San Salvador with a passion for authentic Italian flavors and American grill classics,
+      Charlie Boy Pizza & Grill brings together the best of both worlds. Every pizza is handcrafted
+      with love, using fresh local ingredients and our secret family recipe dough.
+    </p>
+    <p>
+      We believe in quality, tradition, and the joy of sharing a great meal with family and friends.
+    </p>
+  </section>
+
+  <!-- Specialties -->
+  <section class="specialties">
+    <h2>Our Signature Dishes</h2>
+    @for (dish of specialties; track dish.name) {
+  <div class="dish-card">
+    <div class="dish-icon">{{ dish.icon }}</div>
+    <h3>{{ dish.name }}</h3>
+    <p>{{ dish.description }}</p>
   </div>
+}
+  </section>
+
+  <!-- Gallery (simulada con placeholders) -->
+ <!-- Gallery -->
+<section class="gallery">
+  <h2>From Our Kitchen</h2>
+  <div class="gallery-grid">
+    @for (item of galleryItems; track item.src) {
+      <div class="gallery-item">
+        <img [src]="item.src" [alt]="item.alt" loading="lazy">
+      </div>
+    }
+  </div>
+</section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <h2>What Our Customers Say</h2>
+    @for (t of testimonials; track t.author) {
+  <div class="testimonial">
+    <p>"{{ t.text }}"</p>
+    <span>— {{ t.author }}</span>
+  </div>
+}
+  </section>
+
+  <!-- Location & Hours -->
+  <section class="info">
+    <h2>Visit Us</h2>
+    <div class="info-item">
+      <ion-icon name="location-outline"></ion-icon>
+      <p>San Salvador, El Salvador</p>
+    </div>
+    <div class="info-item">
+      <ion-icon name="time-outline"></ion-icon>
+      <p>
+        Mon–Thu: 11:00 AM – 9:00 PM<br>
+        Fri–Sat: 11:00 AM – 10:00 PM<br>
+        Sun: 12:00 PM – 8:00 PM
+      </p>
+    </div>
+    <div class="info-item">
+      <ion-icon name="call-outline"></ion-icon>
+      <p>+503 7000-0000</p>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta">
+    <h2>Ready for the Best Pizza in Town?</h2>
+    <ion-button expand="block" color="primary" routerLink="/order">
+      Order Now
+    </ion-button>
+  </section>
+
+  <!-- Footer decoration -->
+  <div class="footer-decoration">
+    <div class="swirl"></div>
+    <div class="diamond"></div>
+    <div class="swirl"></div>
+  </div>
+
 </ion-content>
