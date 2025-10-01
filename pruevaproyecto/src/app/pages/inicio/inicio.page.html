@@ -8,13 +8,85 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <div class="ion-text-center">
-    <h1>¡Bienvenido!</h1>
-    <p>Pizza artesanal hecha con amor en San Salvador 🇸🇻</p>
-    <ion-img src="assets/logo-placeholder.png" alt="Charlie Boy Pizza" style="max-width: 200px; margin: 20px auto;"></ion-img>
+
+  <!-- Bienvenida -->
+  <div class="ion-text-center ion-padding">
+    <h1 style="font-size: 2.5rem; font-weight: bold; color: #d32f2f; margin: 10px 0;">
+      Charlie Boy Pizza
+    </h1>
+    <p style="font-size: 1.2rem; color: #ffffff; margin-bottom: 20px;">
+      Pizza artesanal hecha con amor en San Salvador 🇸🇻
+    </p>
+
+    <!-- Logo grande -->
+    <ion-img 
+      src="assets/charlie.jpg" 
+      alt="Charlie Boy Pizza" 
+      style="
+        width: 200px;
+        height: 200px;
+        margin: 20px auto !important;
+        border-radius: 50%;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        border: 3px solid #d32f2f;
+      "
+    ></ion-img>
   </div>
 
-  <ion-button expand="block" color="danger" routerLink="/menu">
-    Ver nuestro menú
-  </ion-button>
+  <!-- Botones principales -->
+  <div style="text-align: center; margin: 20px 0;">
+    <ion-button 
+      expand="block" 
+      color="danger" 
+      size="large" 
+      routerLink="/menu"
+      style="margin: 10px 0; font-weight: bold;"
+    >
+      <ion-icon name="pizza" slot="start"></ion-icon>
+      Ver nuestro menú
+    </ion-button>
+
+    <ion-button 
+      expand="block" 
+      color="secondary" 
+      size="large" 
+      routerLink="/pedidos"
+      style="margin: 10px 0; font-weight: bold;"
+    >
+      <ion-icon name="bicycle" slot="start"></ion-icon>
+      Pedir Delivery
+    </ion-button>
+  </div>
+
+  <!-- Oferta del día -->
+  <ion-card 
+    color="danger" 
+    style="
+      margin: 20px 0;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+    "
+  >
+    <ion-card-title style="font-size: 1.3rem; font-weight: bold;">🔥 Oferta del Día</ion-card-title>
+    <ion-card-subtitle style="font-size: 1rem; margin: 10px 0;">20% de descuento en pizzas medianas</ion-card-subtitle>
+    <p style="margin: 10px 0; font-size: 0.9rem;">Válido solo hoy. No te lo pierdas.</p>
+  </ion-card>
+
+  <!-- Footer con información -->
+  <div 
+    style="
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+      text-align: center;
+      color: #ffffff;
+      font-size: 0.9rem;
+    "
+  >
+    <p><strong>Horario:</strong> Lunes a Domingo, 11am - 10pm</p>
+    <p><strong>Teléfono:</strong> +503 1234-5678</p>
+    <p><strong>Dirección:</strong> Santa Tecla, El Salvador</p>
+  </div>
+
 </ion-content>
