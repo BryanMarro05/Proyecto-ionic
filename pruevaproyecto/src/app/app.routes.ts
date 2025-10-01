@@ -32,7 +32,12 @@ export const routes: Routes = [
   {
     path: 'contacto',
     loadComponent: () => import('./pages/contacto/contacto.page').then(m => m.ContactoPage)
+  },
+  {
+  path: 'carrito',
+  loadComponent: () => import('./pages/carrito/carrito.page').then(m => m.CarritoPage)
   }
+
 ];
 
 @NgModule({

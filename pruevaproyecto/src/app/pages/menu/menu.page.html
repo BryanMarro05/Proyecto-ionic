@@ -1,48 +1,140 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="danger">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Menú</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/carrito" fill="clear">
+        <ion-icon name="cart"></ion-icon>
+        <ion-badge *ngIf="getCartCount() > 0" color="primary">{{ getCartCount() }}</ion-badge>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item>
+
+    <!-- 🍕 PIZZAS -->
+    <ion-item-divider>
+      <ion-label color="primary">
+        <h2>Pizzas</h2>
+      </ion-label>
+    </ion-item-divider>
+
+    <ion-item lines="full">
       <ion-label>
         <h2>Pizza Margarita</h2>
         <p>Tomate, mozzarella, albahaca fresca</p>
         <p><strong>$8.99</strong></p>
       </ion-label>
+      <ion-button slot="end" size="small" color="success" (click)="addToCart({name: 'Pizza Margarita', price: 8.99})">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
     </ion-item>
-    <ion-item>
+
+    <ion-item lines="full">
       <ion-label>
         <h2>Pizza Charlie Boy</h2>
         <p>Pepperoni, jamón, piña, champiñones</p>
         <p><strong>$10.99</strong></p>
       </ion-label>
+      <ion-button slot="end" size="small" color="success" (click)="addToCart({name: 'Pizza Charlie Boy', price: 10.99})">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
     </ion-item>
-    <ion-item>
+
+    <ion-item lines="full">
       <ion-label>
         <h2>Pizza Vegetariana</h2>
         <p>Pimientos, cebolla, aceitunas, maíz, mozzarella</p>
         <p><strong>$9.50</strong></p>
       </ion-label>
+      <ion-button slot="end" size="small" color="success" (click)="addToCart({name: 'Pizza Vegetariana', price: 9.50})">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
     </ion-item>
-    <ion-item>
+
+    <ion-item lines="full">
       <ion-label>
+        <h2>Pizza Hawaiana</h2>
+        <p>Jamón, piña, salsa de tomate, mozzarella</p>
+        <p><strong>$9.99</strong></p>
+      </ion-label>
+      <ion-button slot="end" size="small" color="success" (click)="addToCart({name: 'Pizza Hawaiana', price: 9.99})">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <!-- 🍰 POSTRES -->
+    <ion-item-divider>
+      <ion-label color="primary">
         <h2>Postres</h2>
-        <p>Brownie con helado o flan casero</p>
+      </ion-label>
+    </ion-item-divider>
+
+    <ion-item lines="full">
+      <ion-label>
+        <h2>Brownie con Helado</h2>
+        <p>Brownie casero + bola de helado vainilla</p>
         <p><strong>$4.50</strong></p>
       </ion-label>
+      <ion-button slot="end" size="small" color="success" (click)="addToCart({name: 'Brownie con Helado', price: 4.50})">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
     </ion-item>
-    <ion-item>
+
+    <ion-item lines="full">
       <ion-label>
+        <h2>Flan Casero</h2>
+        <p>Flan tradicional con caramelo</p>
+        <p><strong>$3.99</strong></p>
+      </ion-label>
+      <ion-button slot="end" size="small" color="success" (click)="addToCart({name: 'Flan Casero', price: 3.99})">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <!-- 🥤 BEBIDAS -->
+    <ion-item-divider>
+      <ion-label color="primary">
         <h2>Bebidas</h2>
-        <p>Gaseosas, jugos naturales, agua</p>
+      </ion-label>
+    </ion-item-divider>
+
+    <ion-item lines="full">
+      <ion-label>
+        <h2>Gaseosas</h2>
+        <p>Coca-Cola, Sprite, Fanta (500ml)</p>
         <p><strong>$2.00</strong></p>
       </ion-label>
+      <ion-button slot="end" size="small" color="success" (click)="addToCart({name: 'Gaseosas', price: 2.00})">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
     </ion-item>
+
+    <ion-item lines="full">
+      <ion-label>
+        <h2>Jugo Natural</h2>
+        <p>Naranja, piña o mora (400ml)</p>
+        <p><strong>$2.50</strong></p>
+      </ion-label>
+      <ion-button slot="end" size="small" color="success" (click)="addToCart({name: 'Jugo Natural', price: 2.50})">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label>
+        <h2>Agua Mineral</h2>
+        <p>Botella 600ml</p>
+        <p><strong>$1.50</strong></p>
+      </ion-label>
+      <ion-button slot="end" size="small" color="success" (click)="addToCart({name: 'Agua Mineral', price: 1.50})">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-item>
+
   </ion-list>
 </ion-content>

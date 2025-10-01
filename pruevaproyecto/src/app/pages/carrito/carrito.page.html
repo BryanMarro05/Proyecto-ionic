@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Carrito de Compra</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="clearCart()" color="medium" size="small">
+        Limpiar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="cartItems.length === 0" class="empty-cart">
+    <ion-icon name="cart-outline" size="large"></ion-icon>
+    <p>Tu carrito está vacío</p>
+    <ion-button routerLink="/menu" color="primary">Ver Menú</ion-button>
+  </div>
+
+  <ion-list *ngIf="cartItems.length > 0">
+    <ion-item *ngFor="let item of cartItems; let i = index" lines="full">
+      <ion-label>
+        <h2>{{ item.name }}</h2>
+        <p><strong>${{ item.price.toFixed(2) }}</strong></p>
+      </ion-label>
+      <ion-button slot="end" size="small" color="danger" (click)="removeItem(i)">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="cartItems.length > 0" class="total-section">
+    <h3>Total: ${{ getTotal().toFixed(2) }}</h3>
+    <ion-button expand="block" color="success" (click)="checkout()">
+      Finalizar Pedido
+    </ion-button>
+  </div>
+</ion-content>
