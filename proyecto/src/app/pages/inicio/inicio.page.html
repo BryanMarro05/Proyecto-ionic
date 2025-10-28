@@ -1,9 +1,15 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="danger">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Charlie Boy Pizza</ion-title>
+    <ion-title>Inicio</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/carrito" fill="clear">
+        <ion-icon name="cart"></ion-icon>
+        <ion-badge *ngIf="getCartCount() > 0" color="primary">{{ getCartCount() }}</ion-badge>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
