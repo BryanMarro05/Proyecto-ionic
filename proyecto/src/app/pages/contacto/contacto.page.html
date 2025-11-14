@@ -14,27 +14,86 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-item button href="https://wa.me/50370123456" target="_blank">
-    <ion-icon name="logo-whatsapp" slot="start" color="success"></ion-icon>
-    <ion-label>
-      <h2>WhatsApp</h2>
-      <p>+503 7012-3456</p>
-    </ion-label>
-  </ion-item>
 
-  <ion-item button href="https://www.instagram.com/charlieboypizza_sv/" target="_blank">
-    <ion-icon name="logo-instagram" slot="start" color="danger"></ion-icon>
-    <ion-label>
-      <h2>Instagram</h2>
-      <p>@charlieboypizza_sv</p>
-    </ion-label>
-  </ion-item>
+  <!-- ENCABEZADO -->
+  <div style="text-align:center; margin-bottom: 20px;">
+    <h2 style="font-weight: bold; color: #d32f2f; margin-bottom: 5px;">Charlie Boy Pizza</h2>
+    <p style="color: #777;">Contáctanos por cualquier duda o pedido</p>
+  </div>
 
-  <ion-item>
-    <ion-icon name="mail" slot="start" color="primary"></ion-icon>
-    <ion-label>
-      <h2>Email</h2>
-      <p>hola@charlieboypizza.sv</p>
-    </ion-label>
-  </ion-item>
+  <!-- LLAMAR -->
+  <ion-card button href="tel:+50370123456">
+    <ion-item lines="none">
+      <ion-icon 
+        name="call" 
+        slot="start" 
+        style="font-size: 32px; color:#10B981;"
+      ></ion-icon>
+      <ion-label>
+        <h2 style="font-weight: bold;">Llamar</h2>
+        <p>+503 7012-3456</p>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+
+  <!-- WHATSAPP -->
+  <ion-card button href="https://wa.me/50370123456" target="_blank">
+    <ion-item lines="none">
+      <ion-icon 
+        name="logo-whatsapp" 
+        slot="start" 
+        style="font-size: 32px; color:#25D366;"
+      ></ion-icon>
+      <ion-label>
+        <h2 style="font-weight: bold;">WhatsApp</h2>
+        <p>Chat directo</p>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+
+  <!-- INSTAGRAM -->
+  <ion-card button href="https://www.instagram.com/charlieboypizza_sv/" target="_blank">
+    <ion-item lines="none">
+      <ion-icon 
+        name="logo-instagram" 
+        slot="start" 
+        style="font-size: 32px; color:#E1306C;"
+      ></ion-icon>
+      <ion-label>
+        <h2 style="font-weight: bold;">Instagram</h2>
+        <p>@charlieboypizza_sv</p>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+
+  <!-- EMAIL -->
+  <ion-card button href="mailto:hola@charlieboypizza.sv">
+    <ion-item lines="none">
+      <ion-icon 
+        name="mail" 
+        slot="start" 
+        style="font-size: 32px; color:#3B82F6;"
+      ></ion-icon>
+      <ion-label>
+        <h2 style="font-weight: bold;">Correo Electrónico</h2>
+        <p>hola@charlieboypizza.sv</p>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+
+  <!-- UBICACIÓN -->
+  <ion-card routerLink="/ubicacion">
+    <ion-item lines="none">
+      <ion-icon 
+        name="location" 
+        slot="start" 
+        style="font-size: 32px; color:#d32f2f;"
+      ></ion-icon>
+      <ion-label>
+        <h2 style="font-weight: bold;">Ubicación</h2>
+        <p>Santa Tecla, El Salvador</p>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+
 </ion-content>

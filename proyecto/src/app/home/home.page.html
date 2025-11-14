@@ -11,69 +11,102 @@
     <div class="logo-container">
       <img src="assets/charlie.jpg" alt="Charlie Boy Pizza & Grill" class="main-logo">
     </div>
-    <p class="hero-tagline">Where flavor meets tradition.</p>
+    <p class="hero-tagline">Donde el sabor se encuentra con la tradición.</p>
     <div class="hero-buttons">
-      <ion-button expand="block" color="primary" routerLink="#">
-        View Our Menu
+      <ion-button expand="block" color="primary" routerLink="/menu">
+        Ver Menú
       </ion-button>
-      <ion-button expand="block" color="secondary" routerLink="#">
-        Order Online
+      <ion-button expand="block" color="secondary" routerLink="/order">
+        Ordenar en Línea
       </ion-button>
     </div>
   </section>
 
   <!-- About Section -->
   <section class="about">
-    <h2>About Charlie Boy</h2>
+    <h2>Sobre Charlie Boy</h2>
     <p>
-      Founded in San Salvador with a passion for authentic Italian flavors and American grill classics,
-      Charlie Boy Pizza & Grill brings together the best of both worlds. Every pizza is handcrafted
-      with love, using fresh local ingredients and our secret family recipe dough.
+      Fundado en San Salvador con una pasión por los sabores italianos auténticos y los clásicos de la parrilla americana,
+      Charlie Boy Pizza & Grill combina lo mejor de ambos mundos. Cada pizza es elaborada a mano con amor, usando ingredientes
+      frescos y nuestra masa de receta familiar.
     </p>
     <p>
-      We believe in quality, tradition, and the joy of sharing a great meal with family and friends.
+      Creemos en la calidad, la tradición y la alegría de compartir una gran comida con la familia y los amigos.
     </p>
+  </section>
+
+  <!-- Our Values -->
+  <section class="values">
+    <h2>Nuestros Valores</h2>
+    <ul>
+      <li><strong>Frescura:</strong> Preparamos todo diariamente — desde la masa hasta nuestras salsas.</li>
+      <li><strong>Comunidad:</strong> Orgullosamente locales, apoyamos a productores y agricultores salvadoreños.</li>
+      <li><strong>Pasión:</strong> Amamos lo que hacemos — y se nota en cada bocado.</li>
+    </ul>
   </section>
 
   <!-- Specialties -->
   <section class="specialties">
-    <h2>Our Signature Dishes</h2>
+    <h2>Nuestras Especialidades</h2>
     @for (dish of specialties; track dish.name) {
-  <div class="dish-card">
-    <div class="dish-icon">{{ dish.icon }}</div>
-    <h3>{{ dish.name }}</h3>
-    <p>{{ dish.description }}</p>
-  </div>
-}
-  </section>
-
-  <!-- Gallery (simulada con placeholders) -->
- <!-- Gallery -->
-<section class="gallery">
-  <h2>From Our Kitchen</h2>
-  <div class="gallery-grid">
-    @for (item of galleryItems; track item.src) {
-      <div class="gallery-item">
-        <img [src]="item.src" [alt]="item.alt" loading="lazy">
+      <div class="dish-card">
+        <div class="dish-icon">{{ dish.icon }}</div>
+        <h3>{{ dish.name }}</h3>
+        <p>{{ dish.description }}</p>
       </div>
     }
-  </div>
-</section>
+  </section>
+
+  <!-- Chef Section -->
+  <section class="chef">
+    <h2>Conoce a Nuestro Chef</h2>
+    <div class="chef-profile">
+      <img src="assets/chef.jpg" alt="Chef Principal" class="chef-photo">
+      <div>
+        <p>
+          El Chef Carlos “Charlie” Martínez cuenta con más de 15 años perfeccionando el arte de la pizza y la parrilla.
+          Formado en Italia e inspirado por los ingredientes salvadoreños, combina técnica y pasión en cada platillo.
+        </p>
+        <p><em>“Cocinar no es solo preparar comida — es crear recuerdos.”</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="gallery">
+    <h2>Desde Nuestra Cocina</h2>
+    <div class="gallery-grid">
+      @for (item of galleryItems; track item.src) {
+        <div class="gallery-item">
+          <img [src]="item.src" [alt]="item.alt" loading="lazy">
+        </div>
+      }
+    </div>
+  </section>
 
   <!-- Testimonials -->
   <section class="testimonials">
-    <h2>What Our Customers Say</h2>
+    <h2>Lo Que Dicen Nuestros Clientes</h2>
     @for (t of testimonials; track t.author) {
-  <div class="testimonial">
-    <p>"{{ t.text }}"</p>
-    <span>— {{ t.author }}</span>
-  </div>
-}
+      <div class="testimonial">
+        <p>"{{ t.text }}"</p>
+        <span>— {{ t.author }}</span>
+      </div>
+    }
+  </section>
+
+  <!-- Awards / Recognition -->
+  <section class="awards">
+    <h2>Reconocimientos</h2>
+    <p>
+      Elegida como <strong>Mejor Pizzería Local 2024</strong> por Food Lovers El Salvador y destacada en
+      <em>Gastronomía SV Magazine</em> como una de las 10 mejores parrillas del país.
+    </p>
   </section>
 
   <!-- Location & Hours -->
   <section class="info">
-    <h2>Visit Us</h2>
+    <h2>Visítanos</h2>
     <div class="info-item">
       <ion-icon name="location-outline"></ion-icon>
       <p>San Salvador, El Salvador</p>
@@ -81,9 +114,9 @@
     <div class="info-item">
       <ion-icon name="time-outline"></ion-icon>
       <p>
-        Mon–Thu: 11:00 AM – 9:00 PM<br>
-        Fri–Sat: 11:00 AM – 10:00 PM<br>
-        Sun: 12:00 PM – 8:00 PM
+        Lun–Jue: 11:00 AM – 9:00 PM<br>
+        Vie–Sáb: 11:00 AM – 10:00 PM<br>
+        Dom: 12:00 PM – 8:00 PM
       </p>
     </div>
     <div class="info-item">
@@ -92,11 +125,20 @@
     </div>
   </section>
 
+  <!-- Map -->
+  <section class="map">
+    <h2>Encuéntranos Fácilmente</h2>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.894511!2d-89.218191!3d13.692940!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x!2z!5e0!3m2!1ses!2ssv!4v0000000000000"
+      width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy">
+    </iframe>
+  </section>
+
   <!-- Final CTA -->
   <section class="final-cta">
-    <h2>Ready for the Best Pizza in Town?</h2>
+    <h2>¿Listo para la Mejor Pizza de la Ciudad?</h2>
     <ion-button expand="block" color="primary" routerLink="/order">
-      Order Now
+      Ordenar Ahora
     </ion-button>
   </section>
 

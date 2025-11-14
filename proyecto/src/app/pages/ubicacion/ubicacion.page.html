@@ -7,28 +7,52 @@
     <ion-buttons slot="end">
       <ion-button routerLink="/carrito" fill="clear">
         <ion-icon name="cart"></ion-icon>
-        <ion-badge *ngIf="getCartCount() > 0" color="primary">{{ getCartCount() }}</ion-badge>
+        <ion-badge *ngIf="getCartCount() > 0" color="primary">
+          {{ getCartCount() }}
+        </ion-badge>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <h2>Visítanos</h2>
-  <p><strong>Dirección:</strong> Av. Principal #123, Santa Tecla, El Salvador</p>
-  <p>Estamos cerca de la zona comercial de Santa Tecla</p>
 
-  <!-- Botón que abre el mapa en Google Maps -->
+  <h2 class="ion-text-center">📍 Visítanos</h2>
+
+  <ion-card>
+    <ion-card-content>
+      <p><strong>Dirección:</strong> Av. Principal #123, Santa Tecla, El Salvador</p>
+      <p>Estamos cerca de la zona comercial de Santa Tecla.</p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- MAPA EMBEBIDO (visible sin tocar nada) -->
+  <div style="width: 100%; height: 300px; border-radius: 12px; overflow: hidden; margin-top: 10px;">
+    <iframe
+      width="100%"
+      height="100%"
+      style="border:0;"
+      loading="lazy"
+      allowfullscreen
+      referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.840822508458!2d-89.2712315!3d13.6766151!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f632e4c10ffa58d%3A0x58d9c8dddf7f62b9!2sCharlie%20Boy%20Pizza%20%26%20Grill!5e0!3m2!1ses!2ssv!4v1700000000000"
+    ></iframe>
+  </div>
+
+  <!-- Botón secundario para abrir Google Maps -->
   <ion-button 
-    fill="outline" 
-    href="https://www.google.com/maps/place/Charlie+Boy+Pizza+%26+Grill/@13.6766151,-89.2712315,17z/data=!3m1!4b1!4m6!3m5!1s0x8f632e4c10ffa58d:0x58d9c8dddf7f62b9!8m2!3d13.6766151!4d-89.2712315!16s%2Fg%2F11c5jy9h6q?entry=ttu" 
+    expand="block"
+    color="secondary"
+    class="ion-margin-top"
+    href="https://www.google.com/maps/place/Charlie+Boy+Pizza+%26+Grill/@13.6766151,-89.2712315,17z"
     target="_blank"
     rel="noopener noreferrer"
   >
-    📍 Abrir en Google Maps
+    Abrir en Google Maps
   </ion-button>
 
   <p class="ion-text-center ion-margin-top">
-    <small>Horario: Lunes a Domingo, 11am - 10pm</small>
+    <small>🕒 Horario: Lunes a Domingo, 11am - 10pm</small>
   </p>
+
 </ion-content>

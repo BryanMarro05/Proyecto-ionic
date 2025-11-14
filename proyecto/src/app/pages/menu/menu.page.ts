@@ -27,4 +27,30 @@ export class MenuPage {
     this.cartService.addToCart(item);
     alert(`${item.name} agregado al carrito`);
   }
+
+  activeCategory: string = 'pizzas';
+previousCategory: string = 'pizzas';
+
+slideLeft = false;
+slideRight = false;
+
+changeCategory(category: string) {
+  if (category === this.activeCategory) return;
+
+  this.slideLeft = category > this.activeCategory;
+  this.slideRight = category < this.activeCategory;
+
+  this.previousCategory = this.activeCategory;
+
+  setTimeout(() => {
+    this.activeCategory = category;
+  }, 150);
+
+  setTimeout(() => {
+    this.slideLeft = false;
+    this.slideRight = false;
+  }, 300);
 }
+
+}
+

@@ -21,7 +21,6 @@ export class AppComponent {
     { title: 'Inicio', url: '/inicio', icon: 'home' },
     { title: 'Menú', url: '/menu', icon: 'fast-food' },
     { title: 'Promociones', url: '/promociones', icon: 'pricetags' },
-    { title: 'Cómo Pedir', url: '/pedidos', icon: 'cart' },
     { title: 'Ubicación', url: '/ubicacion', icon: 'location' },
     { title: 'Contacto', url: '/contacto', icon: 'call' }
   ];
