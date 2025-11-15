@@ -1,0 +1,240 @@
+// home.page.scss
+
+// Variables de color basadas en la imagen (fondo oscuro y detalles rojos/amarillos)
+:root {
+  --ion-color-primary: #ff5555; // Rojo principal de botones
+  --ion-color-secondary: #ffcc00; // Amarillo para detalles
+  --bg-dark: #00002a; // Fondo principal oscuro
+  --card-bg: #0d0c2b; // Fondo de tarjetas
+  --card-border: rgba(255, 255, 255, 0.1); // Borde de tarjetas
+  --text-light: #ffffff; // Texto claro
+  --text-muted: #cccccc; // Texto secundario
+}
+
+// Estilo general de la página
+.home-content {
+  --background: var(--bg-dark);
+  color: var(--text-light);
+  padding: 16px;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+// Sección de bienvenida
+.welcome-section {
+  text-align: center;
+  padding: 20px 0;
+  max-width: 800px; // Limitar ancho en pantallas grandes
+  margin: 0 auto;
+
+  .title-main {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0.5rem 0;
+    color: var(--text-light);
+    letter-spacing: 1px;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .home-logo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 1rem auto;
+    border: 2px solid var(--ion-color-secondary);
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.3);
+  }
+
+  // Estilo de las métricas
+  .stats {
+    display: flex;
+    justify-content: space-around;
+    margin: 2rem 0;
+
+    .stat {
+      text-align: center;
+      padding: 0.5rem;
+
+      h3 {
+        font-size: 1.8rem;
+        color: var(--ion-color-secondary);
+        margin: 0;
+      }
+
+      p {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin: 0.25rem 0 0;
+      }
+    }
+  }
+
+  // Estilo de los botones
+  .home-actions {
+    padding: 0 1rem;
+    margin-top: 1.5rem;
+
+    ion-button {
+      margin: 0.5rem 0;
+      border-radius: 8px;
+      font-weight: 600;
+      text-transform: none;
+      letter-spacing: 0.5px;
+
+      &.btn-main {
+        --background: var(--ion-color-primary);
+        --background-hover: #ff3333;
+      }
+
+      &.btn-secondary {
+        --background: transparent;
+        --border: 1px solid var(--ion-color-primary);
+        --color: var(--ion-color-primary);
+        --box-shadow: none;
+
+        &:hover {
+          --background: rgba(255, 85, 85, 0.1);
+        }
+      }
+    }
+  }
+}
+
+// Estilo general para las tarjetas (Oferta, Sobre Nosotros, etc.)
+ion-card.glass-card {
+  background: linear-gradient(145deg, var(--card-bg), #0e0e3f);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  margin: 1rem auto;
+  max-width: 800px; // Limitar ancho de tarjetas
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+  }
+
+  ion-card-header {
+    border-bottom: 1px solid var(--card-border);
+  }
+
+  ion-card-title {
+    color: var(--text-light);
+    font-weight: 600;
+    font-size: 1.3rem;
+  }
+
+  ion-card-subtitle {
+    color: var(--text-muted);
+  }
+
+  ion-card-content {
+    color: var(--text-muted);
+    padding: 16px;
+
+    // Para la lista de especialidades
+    ul.specialties-list {
+      list-style-type: none;
+      padding: 0;
+
+      li {
+        padding: 0.5rem 0;
+        border-bottom: 1px dashed var(--card-border);
+        color: var(--text-light);
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+
+    // Para las opiniones
+    .review {
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--card-border);
+
+      ion-icon {
+        color: var(--ion-color-secondary);
+        margin-right: 0.5rem;
+        vertical-align: middle;
+      }
+
+      p {
+        display: inline;
+        margin: 0;
+        color: var(--text-light);
+      }
+
+      small {
+        display: block;
+        color: var(--text-muted);
+        font-style: italic;
+        margin-top: 0.25rem;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+// Animación fade-in
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+// Footer
+.footer {
+  text-align: center;
+  padding: 2rem 1rem 1rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  width: 100%;
+  max-width: 800px;
+  margin-top: auto; // Empuja el footer hacia abajo
+
+  p {
+    margin: 0.25rem 0;
+  }
+
+  .copyright {
+    margin-top: 1rem;
+    font-style: italic;
+  }
+}
+
+// Ajustes de botones de header
+ion-toolbar[color="danger"] {
+  --background: var(--ion-color-primary);
+  --color: white;
+}
+
+ion-badge[color="primary"] {
+  --background: var(--ion-color-secondary);
+  --color: var(--bg-dark);
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 0.7rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+}

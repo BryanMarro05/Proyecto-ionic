@@ -1,0 +1,143 @@
+// ubicacion.page.scss
+
+// Variables de color basadas en la imagen
+:root {
+  --bg-dark: #00002a; // Fondo principal
+  --card-bg: #0d0c2b; // Fondo de las tarjetas
+  --card-border: rgba(255, 255, 255, 0.1); // Borde de tarjetas
+  --text-light: #ffffff; // Texto principal
+  --text-muted: #cccccc; // Texto secundario
+  --button-bg: #ffcc00; // Color secundario para botones
+  --button-text: var(--bg-dark); // Texto oscuro para botón secundario
+  --danger-color: #ff5555; // Color danger (rojo header)
+  --warning-color: #ffcc00; // Color warning (amarillo para badge)
+}
+
+// Fondo principal de la página
+.page-dark {
+  --background: var(--bg-dark);
+  color: var(--text-light);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+// Título de la sección
+.section-title {
+  color: var(--text-light);
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 1rem 0 1.5rem;
+  text-align: center;
+
+  ion-icon {
+    color: var(--warning-color);
+    vertical-align: middle;
+  }
+}
+
+// Estilo general para las tarjetas
+.cb-card {
+  background: linear-gradient(145deg, var(--card-bg), #0e0e3f);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  margin: 0 auto 1.5rem;
+  max-width: 800px; // Limitar ancho en pantallas grandes
+  width: 100%;
+
+  ion-card-content {
+    padding: 16px;
+    text-align: center;
+
+    p {
+      margin: 0.5rem 0;
+      color: var(--text-light);
+
+      &:first-child {
+        font-weight: 600;
+      }
+    }
+
+    .text-muted {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-style: italic;
+      margin-top: 0.25rem;
+    }
+  }
+}
+
+// Contenedor del mapa
+.map-container {
+  width: 100%;
+  max-width: 800px; // Limitar ancho
+  margin: 0 auto 1.5rem;
+  border-radius: 16px; // Asegura bordes redondeados al contenedor
+  overflow: hidden; // Asegura que el iframe no sobresalga
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); // Sombra consistente con otras tarjetas
+
+  .map-frame {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; // Aspect ratio 16:9
+
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  }
+}
+
+// Botón CTA
+.btn-rounded {
+  --background: var(--button-bg);
+  --color: var(--button-text);
+  --border-radius: 50px; // Bordes muy redondeados
+  --box-shadow: 0 4px 12px rgba(255, 204, 0, 0.3);
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0.5px;
+  max-width: 800px; // Limitar ancho
+  margin: 0 auto;
+
+  &:hover {
+    --background: #ffd733; // Hover ligeramente más claro
+    --box-shadow: 0 6px 16px rgba(255, 204, 0, 0.4);
+  }
+}
+
+// Información del footer
+.footer-info {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: auto; // Empuja hacia abajo si hay espacio
+  padding: 1rem;
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+}
+
+// Ajustes de botones de header
+ion-toolbar[color="danger"] {
+  --background: var(--danger-color);
+  --color: white;
+}
+
+ion-badge[color="primary"] {
+  --background: var(--warning-color);
+  --color: var(--bg-dark);
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 0.7rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+}

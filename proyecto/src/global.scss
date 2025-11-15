@@ -35,3 +35,149 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+// global.scss
+
+// Variables globales de color
+:root {
+  // Colores base (ya definidos en tus páginas)
+  --bg-dark: #00002a;
+  --card-bg: #0d0c2b;
+  --card-border: rgba(255, 255, 255, 0.1);
+  --text-light: #ffffff;
+  --text-muted: #cccccc;
+  --danger-color: #ff5555;
+  --warning-color: #ffcc00;
+  --success-color: #4caf50;
+  --social-color-instagram: #e4405f;
+
+  // Nuevos colores para el menú y footer
+  --menu-bg: #0a0922; // Fondo del menú (ligeramente más oscuro que card-bg)
+  --menu-item-bg-hover: rgba(255, 85, 85, 0.15); // Hover de ítems del menú
+  --menu-item-color: #ffffff; // Color de texto del menú
+  --menu-item-color-active: #ffcc00; // Color de texto del ítem activo
+  --footer-bg: #0a0922; // Fondo del footer (igual al menú)
+  --footer-color: #cccccc; // Color de texto del footer
+  --footer-padding: 16px; // Padding estándar del footer
+}
+
+// --- ESTILO GLOBAL PARA EL MENÚ LATERAL ---
+ion-menu {
+  --width: 280px; // Ancho estándar del menú
+
+  ion-content {
+    --background: var(--menu-bg);
+    color: var(--menu-item-color);
+  }
+
+  ion-item {
+    --background: transparent;
+    --color: var(--menu-item-color);
+    --border-color: var(--card-border);
+    --padding-start: 16px;
+    --inner-padding-end: 16px;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      --background: var(--menu-item-bg-hover);
+    }
+
+    &.selected { // Clase para el ítem activo (debes agregarla dinámicamente en tu TS si lo deseas)
+      --color: var(--menu-item-color-active);
+      font-weight: 600;
+    }
+
+    ion-icon {
+      color: var(--warning-color); // Color amarillo para íconos del menú
+      margin-right: 12px;
+      font-size: 1.2rem;
+    }
+
+    ion-label {
+      font-size: 0.95rem;
+      margin: 0;
+    }
+  }
+
+  // Separador en el menú (si lo usas)
+  ion-item-divider {
+    --background: rgba(255, 255, 255, 0.05);
+    --color: var(--text-muted);
+    --padding-start: 16px;
+    --padding-top: 8px;
+    --padding-bottom: 8px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+}
+
+// --- ESTILO GLOBAL PARA EL FOOTER ---
+// Asumiendo que tienes un footer global en tu app.component.html o similar
+.footer-global {
+  background: var(--footer-bg);
+  color: var(--footer-color);
+  padding: var(--footer-padding);
+  text-align: center; // Centra el contenido
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+
+  // Si tienes una estructura de texto e íconos, por ejemplo:
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+
+    p {
+      margin: 0.25rem 0;
+      font-size: 0.85rem;
+
+      &.footer-title {
+        font-weight: 600;
+        color: var(--warning-color); // Destacar título si aplica
+      }
+    }
+
+    .footer-social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 8px;
+
+      ion-icon {
+        font-size: 1.4rem;
+        color: var(--text-muted);
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: var(--warning-color);
+        }
+      }
+    }
+  }
+
+  .footer-copyright {
+    margin-top: 8px;
+    font-size: 0.75rem;
+    font-style: italic;
+    color: var(--text-muted);
+    width: 100%;
+  }
+}
+
+// Opcional: Si el footer está en el ion-content de cada página, puedes aplicar estilos aquí
+// Esto lo haría consistente con el footer de la página de inicio que ya tienes
+ion-content {
+  // Asegura que el footer esté abajo si el contenido es corto
+  display: flex;
+  flex-direction: column;
+
+  > :not(.footer-global) {
+    flex: 1;
+  }
+}

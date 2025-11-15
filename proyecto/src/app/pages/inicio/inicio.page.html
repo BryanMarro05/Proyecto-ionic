@@ -3,159 +3,132 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
+
     <ion-title>Inicio</ion-title>
+
     <ion-buttons slot="end">
       <ion-button routerLink="/carrito" fill="clear">
         <ion-icon name="cart"></ion-icon>
-        <ion-badge *ngIf="getCartCount() > 0" color="primary">{{ getCartCount() }}</ion-badge>
+        <ion-badge *ngIf="getCartCount() > 0" color="primary">
+          {{ getCartCount() }}
+        </ion-badge>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="home-content">
 
   <!-- Bienvenida -->
-  <div class="ion-text-center ion-padding">
-    <h1 style="font-size: 2.5rem; font-weight: bold; color: #d32f2f; margin: 10px 0;">
-      Charlie Boy Pizza
-    </h1>
-    <p style="font-size: 1.2rem; color: #ffffff; margin-bottom: 20px;">
-      Pizza artesanal hecha con amor en San Salvador 🇸🇻
-    </p>
+  <section class="welcome-section">
+
+    <h1 class="title-main">Charlies Boys</h1>
+    <p class="subtitle">Sabores únicos — experiencia gastronómica con buen rollo</p>
 
     <!-- Logo -->
-    <ion-img 
-      src="assets/charlie.jpg" 
-      alt="Charlie Boy Pizza" 
-      style="
-        width: 200px;
-        height: 200px;
-        margin: 20px auto !important;
-        border-radius: 50%;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        border: 3px solid #d32f2f;
-      "
-    ></ion-img>
-  </div>
+    <ion-img class="home-logo" src="assets/charlie.jpg" alt="Charlie Boy Pizza"></ion-img>
 
-  <!-- Botones principales -->
-  <div style="text-align: center; margin: 20px 0;">
-    <ion-button 
-      expand="block" 
-      color="danger" 
-      size="large" 
-      routerLink="/menu"
-      style="margin: 10px 0; font-weight: bold;"
-    >
-      <ion-icon name="pizza" slot="start"></ion-icon>
-      Ver nuestro menú
-    </ion-button>
+    <!-- Métricas -->
+    <div class="stats">
+      <div class="stat">
+        <h3>15+</h3>
+        <p>Años de experiencia</p>
+      </div>
 
-    <ion-button 
-      expand="block" 
-      color="secondary" 
-      size="large" 
-      routerLink="/promociones"
-      style="margin: 10px 0; font-weight: bold;">
-      <ion-icon name="pricetags" slot="start"></ion-icon>
-      Ver Promociones
-    </ion-button>
-  </div>
+      <div class="stat">
+        <h3>5K+</h3>
+        <p>Clientes felices</p>
+      </div>
+
+      <div class="stat">
+        <h3>50+</h3>
+        <p>Productos únicos</p>
+      </div>
+    </div>
+
+    <!-- Botones -->
+    <div class="home-actions">
+      <ion-button expand="block" class="btn-main" routerLink="/menu">
+        <ion-icon name="pizza" slot="start"></ion-icon> Ver Menú
+      </ion-button>
+
+      <ion-button expand="block" class="btn-secondary" routerLink="/promociones">
+        <ion-icon name="pricetags" slot="start"></ion-icon> Promociones
+      </ion-button>
+    </div>
+  </section>
 
   <!-- Oferta del día -->
-  <ion-card 
-    color="danger" 
-    style="
-      margin: 20px 0;
-      border-radius: 12px;
-      padding: 15px;
-      text-align: center;
-    "
-  >
-    <ion-card-title style="font-size: 1.3rem; font-weight: bold;">🔥 Oferta del Día</ion-card-title>
-    <ion-card-subtitle style="font-size: 1rem; margin: 10px 0;">
-      20% de descuento en pizzas medianas
-    </ion-card-subtitle>
-    <p style="margin: 10px 0; font-size: 0.9rem;">
-      Válido solo hoy. ¡Aprovecha antes de que se acabe!
-    </p>
-  </ion-card>
-
-  <!-- SOBRE NOSOTROS -->
-  <ion-card style="margin-top: 25px;">
+  <ion-card class="glass-card fade-in">
     <ion-card-header>
-      <ion-card-title>Sobre Nosotros</ion-card-title>
+      <ion-card-title>🔥 Oferta del Día</ion-card-title>
+      <ion-card-subtitle>20% de descuento en pizzas medianas</ion-card-subtitle>
     </ion-card-header>
-    <ion-card-content style="font-size: 0.95rem;">
-      En Charlie Boy Pizza combinamos tradición, sabor y pasión por la cocina.
-      Todas nuestras pizzas son elaboradas a mano, usando ingredientes frescos
-      y recetas familiares que han pasado de generación en generación.
-      <br><br>
-      Nuestro compromiso es brindarte una experiencia deliciosa, rápida y con el
-      toque único que nos caracteriza.
+    <ion-card-content>
+      Válido solo hoy. ¡Aprovecha antes de que se acabe!
     </ion-card-content>
   </ion-card>
 
-  <!-- ESPECIALIDADES -->
-  <ion-card style="margin-top: 25px;">
+  <!-- Sobre nosotros -->
+  <ion-card class="glass-card fade-in">
+    <ion-card-header>
+      <ion-card-title>Sobre Nosotros</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      En Charlie Boy Pizza combinamos tradición, sabor y pasión por la cocina.
+      Todas nuestras pizzas son elaboradas con ingredientes frescos y recetas familiares.
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Especialidades -->
+  <ion-card class="glass-card fade-in">
     <ion-card-header>
       <ion-card-title>🍕 Nuestras Especialidades</ion-card-title>
     </ion-card-header>
-    <ion-card-content style="font-size: 0.95rem;">
-      <ul style="padding-left: 20px; line-height: 1.6;">
-        <li>Pizza Pepperoni Crunch – nuestra más vendida.</li>
-        <li>Pizza Suprema – el equilibrio perfecto de sabores.</li>
-        <li>Pizza BBQ Charlie – especialidad de la casa.</li>
-        <li>Alitas Búfalo – picantes y sabrosas.</li>
-        <li>Combo Familiar – ideal para compartir.</li>
+    <ion-card-content>
+      <ul class="specialties-list">
+        <li>Pizza Pepperoni Crunch</li>
+        <li>Pizza Suprema</li>
+        <li>Pizza BBQ Charlie</li>
+        <li>Alitas Búfalo</li>
+        <li>Combo Familiar</li>
       </ul>
     </ion-card-content>
   </ion-card>
 
-  <!-- TESTIMONIOS -->
-  <ion-card style="margin-top: 25px;">
+  <!-- Opiniones -->
+  <ion-card class="glass-card fade-in">
     <ion-card-header>
       <ion-card-title>⭐ Opiniones de Clientes</ion-card-title>
     </ion-card-header>
-    <ion-card-content>
 
-      <div style="margin-bottom: 15px;">
-        <ion-icon name="chatbubble-ellipses" color="warning"></ion-icon>
-        <p>"La mejor pizza de San Salvador. Sabor auténtico y precios accesibles."</p>
+    <ion-card-content>
+      <div class="review">
+        <ion-icon name="chatbubble-ellipses"></ion-icon>
+        <p>"La mejor pizza de San Salvador."</p>
         <small>— Andrea M.</small>
       </div>
 
-      <div style="margin-bottom: 15px;">
-        <ion-icon name="chatbubble-ellipses" color="warning"></ion-icon>
-        <p>"El delivery rapidísimo y caliente. Recomendado al 100%."</p>
+      <div class="review">
+        <ion-icon name="chatbubble-ellipses"></ion-icon>
+        <p>"El delivery rapidísimo y caliente."</p>
         <small>— Carlos P.</small>
       </div>
 
-      <div>
-        <ion-icon name="chatbubble-ellipses" color="warning"></ion-icon>
-        <p>"Las alitas están increíbles. Volveré sin duda."</p>
+      <div class="review">
+        <ion-icon name="chatbubble-ellipses"></ion-icon>
+        <p>"Las alitas están increíbles."</p>
         <small>— Sofía R.</small>
       </div>
-
     </ion-card-content>
   </ion-card>
 
-  <!-- FOOTER -->
-  <div 
-    style="
-      margin-top: 40px;
-      padding-top: 20px;
-      border-top: 1px solid #eee;
-      text-align: center;
-      color: #ffffff;
-      font-size: 0.9rem;
-    "
-  >
-    <p><strong>Horario:</strong> Lunes a Domingo, 11:00 AM - 10:00 PM</p>
+  <!-- Footer -->
+  <footer class="footer">
+    <p><strong>Horario:</strong> Lunes a Domingo, 11 AM - 10 PM</p>
     <p><strong>Teléfono:</strong> +503 1234-5678</p>
     <p><strong>Dirección:</strong> Santa Tecla, El Salvador</p>
-    <p style="margin-top: 10px; opacity: 0.6;">© 2025 Charlie Boy Pizza — Todos los derechos reservados</p>
-  </div>
+    <p class="copyright">© 2025 Charlie Boy Pizza</p>
+  </footer>
 
 </ion-content>

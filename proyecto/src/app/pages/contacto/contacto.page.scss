@@ -1,0 +1,134 @@
+// contacto.page.scss
+
+// Variables de color basadas en la imagen
+:root {
+  --bg-dark: #00002a; // Fondo principal
+  --card-bg: #0d0c2b; // Fondo de las tarjetas
+  --card-border: rgba(255, 255, 255, 0.1); // Borde de tarjetas
+  --text-light: #ffffff; // Texto principal
+  --text-muted: #cccccc; // Texto secundario
+  --danger-color: #ff5555; // Color danger (rojo header)
+  --warning-color: #ffcc00; // Color warning (amarillo para iconos)
+  --success-color: #4caf50; // Verde para WhatsApp
+  --social-color-instagram: #e4405f; // Color oficial de Instagram
+}
+
+// Fondo principal de la página
+ion-content {
+  --background: var(--bg-dark);
+  color: var(--text-light);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+// Encabezado de la sección
+.contact-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 800px; // Limitar ancho en pantallas grandes
+
+  h2 {
+    color: var(--text-light);
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0.5rem 0;
+  }
+
+  p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin: 0;
+  }
+}
+
+// Estilo general para las tarjetas de contacto
+.contact-card {
+  background: linear-gradient(145deg, var(--card-bg), #0e0e3f);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  margin-bottom: 1rem;
+  max-width: 800px; // Limitar ancho
+  width: 100%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+  }
+
+  ion-item {
+    --background: transparent;
+    --color: var(--text-light);
+    --inner-padding-end: 16px;
+    --padding-start: 16px;
+    --padding-top: 12px;
+    --padding-bottom: 12px;
+    --border-color: var(--card-border);
+    cursor: pointer;
+
+    ion-icon[slot="start"] {
+      font-size: 1.5rem;
+      margin-right: 12px;
+      width: 24px;
+      height: 24px;
+    }
+
+    ion-label {
+      h2 {
+        color: var(--text-light);
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 0;
+      }
+
+      p {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        margin: 0.25rem 0 0;
+      }
+    }
+  }
+}
+
+// Iconos específicos con colores
+.icon-call {
+  color: var(--warning-color);
+}
+
+.icon-whatsapp {
+  color: var(--success-color);
+}
+
+.icon-instagram {
+  color: var(--social-color-instagram);
+}
+
+.icon-mail {
+  color: var(--warning-color);
+}
+
+.icon-location {
+  color: var(--warning-color);
+}
+
+// Ajustes de botones de header
+ion-toolbar[color="danger"] {
+  --background: var(--danger-color);
+  --color: white;
+}
+
+ion-badge[color="primary"] {
+  --background: var(--warning-color);
+  --color: var(--bg-dark);
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 0.7rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+}

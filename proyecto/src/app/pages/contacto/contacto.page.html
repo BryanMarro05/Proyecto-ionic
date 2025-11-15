@@ -3,11 +3,15 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
+
     <ion-title>Contacto</ion-title>
+
     <ion-buttons slot="end">
       <ion-button routerLink="/carrito" fill="clear">
         <ion-icon name="cart"></ion-icon>
-        <ion-badge *ngIf="getCartCount() > 0">{{ getCartCount() }}</ion-badge>
+        <ion-badge *ngIf="getCartCount() > 0" color="primary">
+          {{ getCartCount() }}
+        </ion-badge>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -16,81 +20,61 @@
 <ion-content class="ion-padding">
 
   <!-- ENCABEZADO -->
-  <div style="text-align:center; margin-bottom: 20px;">
-    <h2 style="font-weight: bold; color: #d32f2f; margin-bottom: 5px;">Charlie Boy Pizza</h2>
-    <p style="color: #777;">Contáctanos por cualquier duda o pedido</p>
+  <div class="contact-header">
+    <h2>Charlie Boy Pizza</h2>
+    <p>Contáctanos por cualquier duda o pedido</p>
   </div>
 
   <!-- LLAMAR -->
-  <ion-card button href="tel:+50370123456">
+  <ion-card button href="tel:+50370123456" class="contact-card">
     <ion-item lines="none">
-      <ion-icon 
-        name="call" 
-        slot="start" 
-        style="font-size: 32px; color:#10B981;"
-      ></ion-icon>
+      <ion-icon name="call-outline" slot="start" class="icon-call"></ion-icon>
       <ion-label>
-        <h2 style="font-weight: bold;">Llamar</h2>
+        <h2>Llamar</h2>
         <p>+503 7012-3456</p>
       </ion-label>
     </ion-item>
   </ion-card>
 
   <!-- WHATSAPP -->
-  <ion-card button href="https://wa.me/50370123456" target="_blank">
+  <ion-card button href="https://wa.me/50370123456" target="_blank" class="contact-card">
     <ion-item lines="none">
-      <ion-icon 
-        name="logo-whatsapp" 
-        slot="start" 
-        style="font-size: 32px; color:#25D366;"
-      ></ion-icon>
+      <ion-icon name="logo-whatsapp" slot="start" class="icon-whatsapp"></ion-icon>
       <ion-label>
-        <h2 style="font-weight: bold;">WhatsApp</h2>
+        <h2>WhatsApp</h2>
         <p>Chat directo</p>
       </ion-label>
     </ion-item>
   </ion-card>
 
   <!-- INSTAGRAM -->
-  <ion-card button href="https://www.instagram.com/charlieboypizza_sv/" target="_blank">
+  <ion-card button href="https://www.instagram.com/charlieboypizza_sv/" target="_blank" class="contact-card">
     <ion-item lines="none">
-      <ion-icon 
-        name="logo-instagram" 
-        slot="start" 
-        style="font-size: 32px; color:#E1306C;"
-      ></ion-icon>
+      <ion-icon name="logo-instagram" slot="start" class="icon-instagram"></ion-icon>
       <ion-label>
-        <h2 style="font-weight: bold;">Instagram</h2>
+        <h2>Instagram</h2>
         <p>@charlieboypizza_sv</p>
       </ion-label>
     </ion-item>
   </ion-card>
 
   <!-- EMAIL -->
-  <ion-card button href="mailto:hola@charlieboypizza.sv">
+  <ion-card button href="mailto:hola@charlieboypizza.sv" class="contact-card">
     <ion-item lines="none">
-      <ion-icon 
-        name="mail" 
-        slot="start" 
-        style="font-size: 32px; color:#3B82F6;"
-      ></ion-icon>
+      <ion-icon name="mail-outline" slot="start" class="icon-mail"></ion-icon>
       <ion-label>
-        <h2 style="font-weight: bold;">Correo Electrónico</h2>
+        <h2>Correo Electrónico</h2>
         <p>hola@charlieboypizza.sv</p>
       </ion-label>
     </ion-item>
   </ion-card>
 
   <!-- UBICACIÓN -->
-  <ion-card routerLink="/ubicacion">
+  <ion-card routerLink="/ubicacion" class="contact-card">
     <ion-item lines="none">
-      <ion-icon 
-        name="location" 
-        slot="start" 
-        style="font-size: 32px; color:#d32f2f;"
-      ></ion-icon>
+      <ion-icon name="location-outline" slot="start" class="icon-location"></ion-icon>
       <ion-label>
-        <h2 style="font-weight: bold;">Ubicación</h2>
+        <h2>Ubicación</h2>
         <p>Santa Tecla, El Salvador</p>
       </ion-label>
     </ion-item>

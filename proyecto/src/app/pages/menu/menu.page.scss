@@ -1,503 +1,311 @@
+// menu.page.scss
 
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Roboto:wght@400;500&display=swap');
-
-:host {
-
-  /* Rojo Charlie (del logo) */
-  --ion-color-primary: #c73c2a;
-  --ion-color-primary-rgb: 199, 60, 42;
-  --ion-color-primary-contrast: #ffffff;
-  --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #af3525;
-  --ion-color-primary-tint: #cd503f;
-
-  /* Crema/Beige (del logo) */
-  --ion-color-secondary: #e6d6b2;
-  --ion-color-secondary-rgb: 230, 214, 178;
-  --ion-color-secondary-contrast: #000000;
-  --ion-color-secondary-contrast-rgb: 0, 0, 0;
-  --ion-color-secondary-shade: #cabda0;
-  --ion-color-secondary-tint: #e9dbbd;
-
-  /* Rojo Acento (para botones de "Agregar") */
-  --ion-color-danger: #ff5a5f;
-  --ion-color-danger-rgb: 255, 90, 95;
-  --ion-color-danger-contrast: #ffffff;
-  --ion-color-danger-contrast-rgb: 255, 255, 255;
-  --ion-color-danger-shade: #e04f54;
-  --ion-color-danger-tint: #ff6a70;
-  
-  /* Color "Light" ahora es el Crema */
-  --ion-color-light: #e6d6b2;
-  --ion-color-light-rgb: 230, 214, 178;
-  --ion-color-light-contrast: #000000;
-  --ion-color-light-contrast-rgb: 0, 0, 0;
-  --ion-color-light-shade: #cabda0;
-  --ion-color-light-tint: #e9dbbd;
-
-  /* Fondos (del logo) */
-  --app-bg: #1a1a1a; /* Fondo Carbón Oscuro */
-  --card-bg: #2b2a29; /* Un gris/marrón muy oscuro para tarjetas */
-  --card-border: #4a4846;
-  --muted: #9aa4b2; /* Mantenemos un gris para texto secundario */
-
-  /* Tipografía */
-  --ion-font-family: 'Roboto', sans-serif;
-  --font-titles: 'Merriweather', serif;
+// Variables de color basadas en la imagen
+:root {
+  --bg-dark: #00002a; // Fondo principal de la app
+  --card-bg: #0d0c2b; // Fondo de las tarjetas
+  --card-border: rgba(255, 255, 255, 0.1); // Borde de tarjetas
+  --text-light: #ffffff; // Texto principal
+  --text-muted: #cccccc; // Texto secundario
+  --price-personal: #ffcc00; // Color para precio personal
+  --price-grande: #ff5555; // Color para precio grande
+  --button-bg: #ff5555; // Fondo de botones
+  --button-hover: #ff3333; // Hover de botones
 }
 
-/* =================================== */
-/* === ESTILOS GENERALES DE PÁGINA === */
-/* =================================== */
-
-/* Fondo de la página */
+// Fondo principal de la página
 ion-content {
-  --background: var(--app-bg);
+  --background: var(--bg-dark);
+  color: var(--text-light);
 }
 
-/* Header y Segmentos */
-ion-toolbar {
-  --background: var(--ion-color-primary);
-  --color: var(--ion-color-primary-contrast);
-}
-
-ion-segment {
-  --background: var(--ion-color-primary-shade);
-}
-
-ion-segment-button {
-  --color: rgba(255, 255, 255, 0.6);
-  --color-checked: var(--ion-color-secondary);
-  --indicator-color: var(--ion-color-secondary);
-  --indicator-height: 4px;
-  text-transform: uppercase;
-  font-family: var(--font-titles);
-}
-
-/* =================================== */
-/* === ESTILO DE TARJETAS (NUEVO) === */
-/* =================================== */
-.shake-card {
-  --background: var(--card-bg);
-  --border-color: var(--card-border);
-  --border-radius: 16px;
-  --padding: 0;
-
-  margin: 10px;
+// Estilo general de las tarjetas de productos
+ion-card.shake-card {
+  background: linear-gradient(145deg, var(--card-bg), #0e0e3f);
   border: 1px solid var(--card-border);
-  border-radius: var(--border-radius);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-  transition: all 0.3s ease;
-  
-  display: flex;
-  flex-direction: column;
-  min-height: 380px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 1rem 0;
 
   &:hover {
     transform: translateY(-5px);
-    border-color: var(--ion-color-secondary-tint);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
   }
 
-  /* Imagen */
+  // Imagen del producto
   img {
     width: 100%;
-    aspect-ratio: 1 / 1;
+    height: 200px;
     object-fit: cover;
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    border-bottom: 1px solid var(--card-border);
   }
 
-  /* Títulos */
+  // Encabezado de la tarjeta (nombre y descripción)
   ion-card-header {
-    text-align: center;
     padding: 16px;
-    z-index: 5;
-    background: var(--card-bg);
+    text-align: center;
+
+    ion-card-title {
+      color: var(--text-light);
+      font-size: 1.2rem;
+      margin: 0.5rem 0;
+      font-weight: 600;
+    }
+
+    ion-card-subtitle {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin: 0.25rem 0 0;
+      font-style: italic;
+    }
   }
 
-  ion-card-title {
-    font-family: var(--font-titles);
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--ion-color-secondary);
-    line-height: 1.3;
-  }
+  // Contenido de la tarjeta (precios y botones)
+  ion-card-content.shake-footer {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 
-  ion-card-subtitle {
-    font-size: 0.9rem;
-    color: var(--muted);
-    margin-top: 8px;
-    font-weight: 300;
+    // Contenedor de precios
+    .item-prices {
+      display: flex;
+      justify-content: space-around;
+      gap: 10px;
+      margin-bottom: 10px;
+
+      .price-box {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--card-border);
+        border-radius: 8px;
+        padding: 8px 12px;
+        text-align: center;
+        flex: 1;
+        transition: background 0.2s ease;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.1);
+        }
+
+        .price-label {
+          display: block;
+          font-size: 0.75rem;
+          color: var(--text-light);
+          margin-bottom: 4px;
+        }
+
+        .price {
+          font-size: 1.1rem;
+          font-weight: bold;
+
+          &.highlight {
+            color: var(--price-grande); // Precio grande en rojo
+          }
+
+          // Asignar color específico al precio personal
+          &:not(.highlight) {
+            color: var(--price-personal); // Precio personal en amarillo
+          }
+        }
+      }
+    }
+
+    // Precio único para bebidas y hotdogs
+    .shake-price {
+      display: block;
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: var(--price-grande); // Misma tonalidad que el precio "Grande"
+      margin-bottom: 10px;
+    }
+
+    // Contenedor de botones de "Agregar"
+    .add-to-cart-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      ion-button {
+        --background: var(--button-bg);
+        --background-hover: var(--button-hover);
+        --border-radius: 8px;
+        --padding-start: 12px;
+        --padding-end: 12px;
+        --padding-top: 8px;
+        --padding-bottom: 8px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: white;
+        text-transform: none; // Mantiene el texto como está
+
+        &:hover {
+          --background: var(--button-hover);
+        }
+
+        &.small {
+          --font-size: 0.85rem;
+        }
+      }
+    }
   }
 }
 
-/* =================================== */
-/* === FOOTER DE LA TARJETA === */
-/* =================================== */
-.shake-footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 16px 16px 16px;
-  border-top: 1px solid var(--card-border);
-  margin-top: auto;
-  z-index: 10;
-  gap: 10px;
-  width: 100%;
-  box-sizing: border-box;
-
-  // Precio para items de un solo precio
-  .shake-price {
-    font-size: 2rem;
-    font-weight: 900;
-    font-family: "Courier New", monospace;
-    color: var(--ion-color-secondary);
-    text-shadow: 0 0 20px rgba(230, 214, 178, 0.5);
-    margin-bottom: 5px;
-  }
-  
-  // Contenedor para precios dobles
-  .item-prices {
-    display: flex;
-    gap: 15px;
-    justify-content: space-around;
-    width: 100%;
-    margin: 10px 0;
-  }
-  
-  .price-box {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 12px 5px;
-    background: var(--app-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 12px;
-  }
-  
-  .price-label {
-    font-size: 0.7rem;
-    color: var(--muted);
-    text-transform: uppercase;
-    font-weight: 600;
-    margin-bottom: 5px;
-  }
-  
-  .price {
-    font-size: 1.4rem;
-    font-weight: 800;
-    color: var(--ion-color-secondary);
-    font-family: "Courier New", monospace;
-  }
-  
-  .price.highlight {
-    color: var(--ion-color-danger);
-    font-size: 1.5rem;
-  }
-
-  // Contenedor para botones de agregar
-  .add-to-cart-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-  }
-
-  ion-button {
-    --box-shadow: 0 4px 10px rgba(255, 90, 95, 0.3);
-    --border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    margin: 0;
-    text-transform: uppercase;
-  }
-}
-
-
-/* =================================== */
-/* === MODAL DEL CARRITO (TEMA OSCURO) === */
-/* =================================== */
+// Estilo del modal del carrito
 ion-modal {
-  --height: 100%;
-  
-  ion-toolbar {
-    --background: var(--app-bg);
-    --color: var(--ion-color-primary);
-    --border-color: var(--card-border);
-    --border-width: 0 0 1px 0;
-  }
-
-  ion-content {
-    --background: var(--app-bg);
-    --color: var(--ion-color-light);
-  }
+  --ion-background-color: var(--bg-dark);
+  color: var(--text-light);
 
   ion-list {
     background: transparent;
   }
 
-  ion-item {
-    --background: var(--card-bg);
-    --color: var(--ion-color-light);
-    --border-color: var(--card-border);
-    border-radius: 8px;
-    margin-bottom: 8px;
-  }
-
   .quantity-controls {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    
+    gap: 8px;
+
     span {
-      min-width: 20px;
+      min-width: 24px;
       text-align: center;
-      color: var(--ion-color-light);
+      font-weight: bold;
     }
   }
 
   .cart-total {
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: var(--ion-color-light);
+    font-size: 1.2rem;
+    padding: 16px 0;
+    border-top: 1px solid var(--card-border);
   }
-  
+
   .delivery-form {
-    h3 {
-      color: var(--ion-color-primary);
-      font-family: var(--font-titles);
-    }
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--card-border);
+
     ion-item {
-      --background: var(--card-bg);
-      --border-radius: 8px;
-      margin-bottom: 10px;
-      --highlight-color: var(--ion-color-primary);
+      --background: rgba(255, 255, 255, 0.05);
+      --color: var(--text-light);
+      --border-color: var(--card-border);
+      margin-bottom: 12px;
     }
-    ion-label {
-      color: var(--muted);
-    }
+
     ion-input, ion-textarea {
-      --color: var(--ion-color-light);
+      --color: white;
+      --placeholder-color: var(--text-muted);
     }
   }
 }
 
-/* =================================== */
-/* === RECIBO (SE MANTIENE CLARO) === */
-/* =================================== */
+// Estilo para el recibo (overlay)
 .receipt-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
-  align-items: center;
   justify-content: center;
-  z-index: 2000;
-  backdrop-filter: blur(5px);
-}
-
-.receipt-modal {
-  background: #f4f4f4;
-  color: #333;
-  border-radius: 12px;
-  padding: 25px;
-  width: 90%;
-  max-width: 450px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  z-index: 2001;
-  font-family: 'Courier New', Courier, monospace;
-}
-
-.receipt-header {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  border-bottom: 2px dashed #999;
-  padding-bottom: 15px;
-  margin-bottom: 15px;
-}
-
-.receipt-header h2 {
-  margin: 0;
-  font-family: var(--font-titles);
-  color: #110b3b;
-}
-
-.close-btn-receipt {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  color: #999;
-  cursor: pointer;
-}
-
-.receipt-content {
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-.receipt-content hr {
-  border: none;
-  border-top: 1px dashed #999;
-  margin: 15px 0;
-}
-.receipt-content h3 {
-  font-family: var(--font-titles);
-  font-size: 1.1rem;
-  color: #110b3b;
-  margin: 10px 0;
-}
-
-.receipt-items {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.receipt-item {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
-.receipt-item span:first-child {
-  flex: 1;
-  padding-right: 10px;
-}
-
-.receipt-total {
-  display: flex;
-  justify-content: space-between;
-  font-size: 1.3rem;
-  font-weight: bold;
-  margin-top: 15px;
-  color: #000;
-}
-
-.receipt-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 25px;
-}
-.print-btn, .close-btn-modal {
-  flex: 1;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  font-family: "Poppins", sans-serif;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-.print-btn {
-  background-color: #3498db;
-  color: white;
-}
-.print-btn:hover {
-  background-color: #2980b9;
-}
-.close-btn-modal {
-  background-color: #e0e0e0;
-  color: #555;
-}
-.close-btn-modal:hover {
-  background-color: #cccccc;
-}
-
-/* =================================== */
-/* === ESTILOS DE IMPRESIÓN === */
-/* =================================== */
-@media print {
-  body * {
-    visibility: hidden;
-  }
-  
-  .receipt-overlay, .receipt-overlay * {
-    visibility: visible;
-  }
-
-  .receipt-overlay {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: #fff;
-    z-index: 9999;
-  }
+  z-index: 1000;
 
   .receipt-modal {
-    width: 100%;
-    max-width: 100%;
-    box-shadow: none;
-    border: none;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 24px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    color: var(--text-light);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+
+    .receipt-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 8px;
+
+      h2 {
+        margin: 0;
+      }
+
+      .close-btn-receipt {
+        background: none;
+        border: none;
+        color: var(--text-light);
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 4px;
+        border-radius: 4px;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.1);
+        }
+      }
+    }
+
+    .receipt-content {
+      hr {
+        border: 0;
+        border-top: 1px solid var(--card-border);
+        margin: 12px 0;
+      }
+
+      h3 {
+        font-size: 1.1rem;
+        color: var(--ion-color-secondary, #ffcc00);
+      }
+
+      .receipt-items {
+        list-style-type: none;
+        padding: 0;
+
+        .receipt-item {
+          display: flex;
+          justify-content: space-between;
+          padding: 4px 0;
+        }
+      }
+
+      .receipt-total {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: var(--price-grande);
+      }
+    }
+
+    .receipt-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+
+      button {
+        padding: 8px 16px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+
+        .print-btn {
+          background: var(--price-personal);
+          color: var(--bg-dark);
+        }
+
+        .close-btn-modal {
+          background: var(--button-bg);
+          color: white;
+        }
+      }
+    }
   }
-  
-  .receipt-actions, .close-btn-receipt {
-    display: none;
-  }
 }
-
-/* ⭐ Estilo moderno tabs */
-.modern-tabs {
-  display: flex;
-  gap: 10px;
-  padding: 12px;
-  overflow-x: auto;
-  background: var(--ion-color-light);
-  border-bottom: 2px solid #ececec;
-}
-
-.modern-tab {
-  flex-shrink: 0;
-  padding: 10px 18px;
-  border-radius: 18px;
-  background: #f3f3f3;
-  border: none;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: 0.25s;
-}
-
-.modern-tab ion-icon {
-  font-size: 18px;
-}
-
-.modern-tab.active {
-  background: var(--ion-color-danger);
-  color: white;
-  box-shadow: 0 2px 6px rgba(255, 0, 0, 0.2);
-}
-
-.slide-container {
-  transition: transform 0.25s ease;
-}
-
-.slide-left {
-  transform: translateX(-25px);
-  opacity: 0.3;
-}
-
-.slide-right {
-  transform: translateX(25px);
-  opacity: 0.3;
-}
-
-/* ⭐ DARK MODE */
-@media (prefers-color-scheme: dark) {
-  .modern-tabs {
-    background: #1e1e1e;
-    border-bottom-color: #333;
-  }
-  .modern-tab {
-    background: #333;
-    color: #ddd;
-  }
-  .modern-tab.active {
-    background: #ff4c4c;
-    color: white;
-  }
-}
-
