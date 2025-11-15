@@ -1,140 +1,247 @@
 <ion-header>
-  <ion-toolbar color="danger">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Menú</ion-title>
-    <ion-buttons slot="end">
-      <ion-button routerLink="/carrito" fill="clear">
-        <ion-icon name="cart"></ion-icon>
-        <ion-badge *ngIf="getCartCount() > 0" color="primary">{{ getCartCount() }}</ion-badge>
+  <ion-toolbar color="primary">
+    <ion-title>Nuestro Menú</ion-title>
+    <!-- Botón del Carrito --><ion-buttons slot="end">
+      <ion-button (click)="cartOpen = true">
+        <ion-icon slot="icon-only" name="cart"></ion-icon> <ion-badge color="danger" *ngIf="cartItemCount > 0">{{ cartItemCount }}</ion-badge>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
+
+  <ion-toolbar color="primary">
+    <ion-segment [(ngModel)]="activeCategory" color="light">
+      <ion-segment-button *ngFor="let cat of categories" [value]="cat.id">
+        <ion-icon [name]="cat.icon"></ion-icon>
+        <ion-label>{{ cat.label }}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
 </ion-header>
+<ion-content class="ion-padding" [fullscreen]="true">
+  
+  <div [ngSwitch]="activeCategory">
 
-<ion-content>
-  <ion-list>
+    <section *ngSwitchCase="'pizzas'">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" size-md="6" size-lg="4" *ngFor="let pizza of pizzas">
+            <ion-card class="shake-card">
+              <img [src]="getImageUrl(pizza.imagen)" (error)="$event.target.src = 'https://placehold.co/300x200/1d1641/ffffff?text=Error'" />
+              <ion-card-header>
+                <ion-card-title>{{ pizza.nombre }}</ion-card-title>
+                <ion-card-subtitle *ngIf="pizza.descripcion">{{ pizza.descripcion }}</ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content class="shake-footer">
+                <div class="item-prices">
+                  <div class="price-box">
+                    <span class="price-label">Personal</span>
+                    <span class="price">{{ pizza.precioP | number:'1.2-2' }}</span>
+                  </div>
+                  <div class="price-box">
+                    <span class="price-label">Grande</span>
+                    <span class="price highlight">{{ pizza.precioG | number:'1.2-2' }}</span>
+                  </div>
+                </div>
+                <div class="add-to-cart-buttons">
+                  <ion-button (click)="addToCart(pizza, 'Personal', pizza.precioP)" expand="block" color="danger" size="small">
+                    Agregar Personal +
+                  </ion-button>
+                  <ion-button (click)="addToCart(pizza, 'Grande', pizza.precioG)" expand="block" color="danger" size="small">
+                    Agregar Grande +
+                  </ion-button>
+                </div>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </section>
 
-    <!-- 🍕 PIZZAS -->
-    <ion-item-divider>
-      <ion-label color="primary">
-        <h2>Pizzas</h2>
-      </ion-label>
-    </ion-item-divider>
+    <section *ngSwitchCase="'hamburguesas'">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" size-md="6" size-lg="4" *ngFor="let burger of hamburguesas">
+            <ion-card class="shake-card">
+              <img [src]="getImageUrl(burger.imagen)" (error)="$event.target.src = 'https://placehold.co/300x200/1d1641/ffffff?text=Error'" />
+              <ion-card-header>
+                <ion-card-title>{{ burger.nombre }}</ion-card-title>
+                <ion-card-subtitle *ngIf="burger.descripcion">{{ burger.descripcion }}</ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content class="shake-footer">
+                <div class="item-prices">
+                  <div class="price-box">
+                    <span class="price-label">1 Carne</span>
+                    <span class="price">{{ burger.precioP | number:'1.2-2' }}</span>
+                  </div>
+                  <div class="price-box">
+                    <span class="price-label">Doble</span>
+                    <span class="price highlight">{{ burger.precioG | number:'1.2-2' }}</span>
+                  </div>
+                </div>
+                <div class="add-to-cart-buttons">
+                  <ion-button (click)="addToCart(burger, '1 Carne', burger.precioP)" expand="block" color="danger" size="small">
+                    Agregar 1 Carne +
+                  </ion-button>
+                  <ion-button (click)="addToCart(burger, 'Doble', burger.precioG)" expand="block" color="danger" size="small">
+                    Agregar Doble +
+                  </ion-button>
+                </div>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </section>
 
-    <ion-item lines="full">
-      <ion-label>
-        <h2>Pizza Margarita</h2>
-        <p>Tomate, mozzarella, albahaca fresca</p>
-        <p><strong>$8.99</strong></p>
-      </ion-label>
-      <ion-button slot="end" size="small" color="success" (click)="addToCart({name: 'Pizza Margarita', price: 8.99})">
-        <ion-icon name="add"></ion-icon>
-      </ion-button>
-    </ion-item>
+    <section *ngSwitchCase="'bebidas'">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" size-md="6" size-lg="4" *ngFor="let bebida of bebidas">
+            <ion-card class="shake-card">
+              <img [src]="getImageUrl(bebida.imagen)" (error)="$event.target.src = 'https://placehold.co/300x200/1d1641/ffffff?text=Error'" />
+              <ion-card-header>
+                <ion-card-title>{{ bebida.nombre }}</ion-card-title>
+                <ion-card-subtitle *ngIf="bebida.descripcion">{{ bebida.descripcion }}</ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content class="shake-footer">
+                <span class="shake-price">{{ bebida.precio | number:'1.2-2' }}</span>
+                <ion-button (click)="addToCart(bebida, '', bebida.precio)" expand="block" color="danger" size="small">
+                  Agregar +
+                </ion-button>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </section>
 
-    <ion-item lines="full">
-      <ion-label>
-        <h2>Pizza Charlie Boy</h2>
-        <p>Pepperoni, jamón, piña, champiñones</p>
-        <p><strong>$10.99</strong></p>
-      </ion-label>
-      <ion-button slot="end" size="small" color="success" (click)="addToCart({name: 'Pizza Charlie Boy', price: 10.99})">
-        <ion-icon name="add"></ion-icon>
-      </ion-button>
-    </ion-item>
+    <section *ngSwitchCase="'hotdogs'">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" size-md="6" size-lg="4" *ngFor="let hotdog of hotdogs">
+            <ion-card class="shake-card">
+              <img [src]="getImageUrl(hotdog.imagen)" (error)="$event.target.src = 'https://placehold.co/300x200/1d1641/ffffff?text=Error'" />
+              <ion-card-header>
+                <ion-card-title>{{ hotdog.nombre }}</ion-card-title>
+                <ion-card-subtitle *ngIf="hotdog.descripcion">{{ hotdog.descripcion }}</ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content class="shake-footer">
+                <span class="shake-price">{{ hotdog.precio | number:'1.2-2' }}</span>
+                <ion-button (click)="addToCart(hotdog, '', hotdog.precio)" expand="block" color="danger" size="small">
+                  Agregar +
+                </ion-button>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </section>
 
-    <ion-item lines="full">
-      <ion-label>
-        <h2>Pizza Vegetariana</h2>
-        <p>Pimientos, cebolla, aceitunas, maíz, mozzarella</p>
-        <p><strong>$9.50</strong></p>
-      </ion-label>
-      <ion-button slot="end" size="small" color="success" (click)="addToCart({name: 'Pizza Vegetariana', price: 9.50})">
-        <ion-icon name="add"></ion-icon>
-      </ion-button>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-label>
-        <h2>Pizza Hawaiana</h2>
-        <p>Jamón, piña, salsa de tomate, mozzarella</p>
-        <p><strong>$9.99</strong></p>
-      </ion-label>
-      <ion-button slot="end" size="small" color="success" (click)="addToCart({name: 'Pizza Hawaiana', price: 9.99})">
-        <ion-icon name="add"></ion-icon>
-      </ion-button>
-    </ion-item>
-
-    <!-- 🍰 POSTRES -->
-    <ion-item-divider>
-      <ion-label color="primary">
-        <h2>Postres</h2>
-      </ion-label>
-    </ion-item-divider>
-
-    <ion-item lines="full">
-      <ion-label>
-        <h2>Brownie con Helado</h2>
-        <p>Brownie casero + bola de helado vainilla</p>
-        <p><strong>$4.50</strong></p>
-      </ion-label>
-      <ion-button slot="end" size="small" color="success" (click)="addToCart({name: 'Brownie con Helado', price: 4.50})">
-        <ion-icon name="add"></ion-icon>
-      </ion-button>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-label>
-        <h2>Flan Casero</h2>
-        <p>Flan tradicional con caramelo</p>
-        <p><strong>$3.99</strong></p>
-      </ion-label>
-      <ion-button slot="end" size="small" color="success" (click)="addToCart({name: 'Flan Casero', price: 3.99})">
-        <ion-icon name="add"></ion-icon>
-      </ion-button>
-    </ion-item>
-
-    <!-- 🥤 BEBIDAS -->
-    <ion-item-divider>
-      <ion-label color="primary">
-        <h2>Bebidas</h2>
-      </ion-label>
-    </ion-item-divider>
-
-    <ion-item lines="full">
-      <ion-label>
-        <h2>Gaseosas</h2>
-        <p>Coca-Cola, Sprite, Fanta (500ml)</p>
-        <p><strong>$2.00</strong></p>
-      </ion-label>
-      <ion-button slot="end" size="small" color="success" (click)="addToCart({name: 'Gaseosas', price: 2.00})">
-        <ion-icon name="add"></ion-icon>
-      </ion-button>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-label>
-        <h2>Jugo Natural</h2>
-        <p>Naranja, piña o mora (400ml)</p>
-        <p><strong>$2.50</strong></p>
-      </ion-label>
-      <ion-button slot="end" size="small" color="success" (click)="addToCart({name: 'Jugo Natural', price: 2.50})">
-        <ion-icon name="add"></ion-icon>
-      </ion-button>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-label>
-        <h2>Agua Mineral</h2>
-        <p>Botella 600ml</p>
-        <p><strong>$1.50</strong></p>
-      </ion-label>
-      <ion-button slot="end" size="small" color="success" (click)="addToCart({name: 'Agua Mineral', price: 1.50})">
-        <ion-icon name="add"></ion-icon>
-      </ion-button>
-    </ion-item>
-
-  </ion-list>
+  </div>
 </ion-content>
+
+<ion-modal [isOpen]="cartOpen" (didDismiss)="cartOpen = false" [initialBreakpoint]="1" [breakpoints]="[0, 1]">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>🛒 Tu Pedido</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="cartOpen = false">Cerrar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-list *ngIf="cart.length > 0; else emptyCart">
+        <ion-item *ngFor="let item of cart">
+          <ion-label>
+            <h2>{{ item.nombre }} ({{ item.size || 'Único' }})</h2>
+            <p>{{ (item.price! * item.quantity!) | number:'1.2-2' }}</p>
+          </ion-label>
+          <div class="quantity-controls" slot="end">
+            <ion-button (click)="updateQuantity(item, -1)" fill="clear" size="small">-</ion-button>
+            <span>{{ item.quantity }}</span>
+            <ion-button (click)="updateQuantity(item, 1)" fill="clear" size="small">+</ion-button>
+            <ion-button (click)="removeFromCart(item)" fill="clear" color="danger" size="small">
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
+          </div>
+        </ion-item>
+      </ion-list>
+      
+      <ng-template #emptyCart>
+        <p class="ion-text-center ion-padding">Tu carrito está vacío</p>
+      </ng-template>
+
+      <div *ngIf="cart.length > 0" class="ion-padding-vertical">
+        <ion-button (click)="clearCart()" expand="block" color="danger" fill="outline">
+          <ion-icon name="trash-outline" slot="start"></ion-icon>
+          Vaciar Carrito
+        </ion-button>
+      </div>
+
+      <div class="cart-total ion-text-center" *ngIf="cart.length > 0">
+        <strong>Total: {{ total | number:'1.2-2' }}</strong>
+      </div>
+
+      <form #form="ngForm" (ngSubmit)="placeOrder()" class="delivery-form">
+        <h3 class="ion-padding-top">📝 Datos de Entrega</h3>
+        <ion-item>
+          <ion-label position="floating">Nombre completo</ion-label>
+          <ion-input type="text" [(ngModel)]="order.name" name="name" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Dirección exacta</ion-label>
+          <ion-input type="text" [(ngModel)]="order.address" name="address" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Teléfono</ion-label>
+          <ion-input type="tel" [(ngModel)]="order.phone" name="phone" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Instrucciones de entrega (opcional)</ion-label>
+          <ion-textarea [(ngModel)]="order.notes" name="notes"></ion-textarea>
+        </ion-item>
+        <ion-button type="submit" expand="block" color="danger" class="ion-margin-top" [disabled]="form.invalid || cart.length === 0">
+          🚀 Realizar Pedido
+        </ion-button>
+      </form>
+
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<div *ngIf="showReceipt" class="receipt-overlay" (click)="closeReceipt()">
+  <div class-="receipt-modal" (click)="$event.stopPropagation()">
+    <div class="receipt-header">
+      <h2>Recibo de Pedido</h2>
+      <button (click)="closeReceipt()" class="close-btn-receipt">✕</button>
+    </div>
+    <div *ngIf="receiptData" class="receipt-content">
+      <p><strong>Gracias por tu pedido, {{ receiptData.order.name }}!</strong></p>
+      <p><strong>Fecha:</strong> {{ receiptData.date }}</p>
+      <hr>
+      <h3>Detalles de Entrega</h3>
+      <p><strong>Dirección:</strong> {{ receiptData.order.address }}</p>
+      <p><strong>Teléfono:</strong> {{ receiptData.order.phone }}</p>
+      <p *ngIf="receiptData.order.notes"><strong>Notas:</strong> {{ receiptData.order.notes }}</p>
+      <hr>
+      <h3>Resumen del Pedido</h3>
+      <ul class="receipt-items">
+        <li *ngFor="let item of receiptData.cart" class="receipt-item">
+          <span>{{ item.quantity }}x {{ item.nombre }} ({{ item.size || 'Único' }})</span>
+          <span>{{ (item.price * item.quantity) | number:'1.2-2' }}</span>
+        </li>
+      </ul>
+      <hr>
+      <div class="receipt-total">
+        <strong>Total:</strong>
+        <strong>{{ receiptData.total | number:'1.2-2' }}</strong>
+      </div>
+    </div>
+    <div class="receipt-actions">
+      <button (click)="printReceipt()" class="print-btn">🖨️ Imprimir</button>
+      <button (click)="closeReceipt()" class="close-btn-modal">Cerrar</button>
+    </div>
+  </div>
+</div>
