@@ -32,7 +32,42 @@ export const routes: Routes = [
   {
   path: 'carrito',
   loadComponent: () => import('./pages/carrito/carrito.page').then(m => m.CarritoPage)
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('./pages/login/login.page').then( m => m.LoginPage)
+  },
+  {
+    path: 'register',
+    loadComponent: () => import('./pages/register/register.page').then( m => m.RegisterPage)
+  },
+  {
+    path: 'admin',
+    loadComponent: () => import('./pages/admin/admin.page').then( m => m.AdminPage)
+  },
+  {
+    path: 'perfil',
+    loadComponent: () => import('./pages/mi-perfil/mi-perfil.page').then( m => m.MiPerfilPage)
+  },
+  {
+    path: 'mis-pedidos',
+    loadComponent: () => import('./pages/mis-pedidos/mis-pedidos.page').then( m => m.MisPedidosPage)
+  },  {
+    path: 'pedidos-admin',
+    loadComponent: () => import('./pages/pedidos-admin/pedidos-admin.page').then( m => m.PedidosAdminPage)
+  },
+  {
+    path: 'forgot-password',
+    loadComponent: () => import('./pages/forgot-password/forgot-password.page').then( m => m.ForgotPasswordPage)
+  },
+  {
+    path: 'reset-password',
+    loadComponent: () => import('./pages/reset-password/reset-password.page').then( m => m.ResetPasswordPage)
   }
+
+
+
+
 
 ];
 

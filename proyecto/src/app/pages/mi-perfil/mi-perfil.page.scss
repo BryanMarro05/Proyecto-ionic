@@ -1,0 +1,156 @@
+/*
+  Estilos refinados para la página de Mi Perfil
+  Combinando el tema oscuro, rojo y dorado con estética tipo pizarrón.
+*/
+
+// 1. Fondo de la Página
+ion-content {
+  --background: linear-gradient(180deg, #2B2B2B 0%, #1C1C1C 100%);
+  background-image: url('/assets/textures/chalkboard.jpg'); // opcional
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+// 2. Contenedor Principal
+.profile-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+// 3. Tarjetas
+ion-card {
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  margin-bottom: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(60, 40, 30, 0.4);
+
+  ion-card-title {
+    color: #FFD700;
+    font-family: 'Chalkduster', cursive;
+    font-weight: 700;
+    font-size: 20px;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.2);
+  }
+}
+
+// 4. Detalles del Perfil
+.profile-details {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile-avatar {
+  font-size: 64px;
+  color: #FFD700;
+  border: 3px solid #FFD700;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+.profile-text {
+  flex: 1;
+
+  h3 {
+    color: #FFD700;
+    margin: 0 0 8px 0;
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+
+  p {
+    color: #E8D4B8;
+    margin: 4px 0;
+    font-size: 0.9rem;
+
+    strong {
+      color: #f0e0c8;
+    }
+  }
+}
+.custom-toolbar {
+  --background: #f36a6a !important; // ✅ Azul profundo
+  --color: #FFFFFF !important; // ✅ Texto blanco
+}
+
+
+
+// 5. Formulario
+ion-item {
+  --background: rgba(255, 255, 255, 0.05);
+  --border-radius: 12px;
+  --padding-start: 12px;
+  --inner-padding-end: 12px;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  margin-bottom: 16px;
+  transition: border-color 0.3s ease;
+
+  &.item-focused {
+    border-color: #FFD700;
+  }
+
+  ion-label {
+    color: #E8D4B8 !important;
+    font-weight: 600;
+    font-family: 'Chalkboard SE', sans-serif;
+  }
+
+  ion-input {
+    --color: #ffffff;
+    --placeholder-color: #E8D4B8;
+  }
+}
+
+// 6. Botones del Formulario
+.form-button-stack {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  ion-button {
+    --background: linear-gradient(135deg, #FF6347 0%, #FF4500 100%);
+    --color: white;
+    --box-shadow: 0 4px 12px rgba(255, 99, 71, 0.3);
+    border: 1px solid rgba(255, 99, 71, 0.4);
+    border-radius: 12px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+
+    &:hover {
+      filter: brightness(1.1);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}
+
+// 7. Esqueleto de Carga
+ion-skeleton-text {
+  --background: rgba(255, 255, 255, 0.1);
+  --background-rgb: 255, 255, 255;
+}
+
+.profile-avatar-skeleton {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+}
+
+// 8. Responsividad
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 8px;
+  }
+
+  .profile-details {
+    flex-direction: column;
+    text-align: center;
+  }
+}

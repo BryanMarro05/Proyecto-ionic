@@ -1,0 +1,364 @@
+// admin.page.scss
+// Estilo inspirado en fondo de madera + pizarrón ilustrado
+
+.admin-content {
+  --background: linear-gradient(180deg, #2B2B2B 0%, #1C1C1C 100%);
+  background-image: url('/assets/textures/chalkboard.jpg'); // opcional
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.admin-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.form-card, .products-card {
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(60, 40, 30, 0.4);
+
+  ion-card-title {
+    color: #FFFFFF;
+    font-family: 'Chalkduster', cursive;
+    font-size: 20px;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.2);
+  }
+
+  ion-card-subtitle {
+    color: #F5E6D3;
+    opacity: 0.9;
+  }
+}
+
+.input-item {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+
+  &:hover, &:focus-within {
+    border-color: #FFD700;
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+  }
+
+  ion-label {
+    color: #FFFFFF !important;
+    font-family: 'Chalkboard SE', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  ion-input, ion-textarea, ion-select {
+    --color: #F5E6D3;
+    --placeholder-color: rgba(245, 230, 211, 0.5);
+    --placeholder-opacity: 0.5;
+  }
+
+  .image-preview-container {
+    width: 100%;
+    margin-bottom: 15px;
+    text-align: center;
+
+    .image-preview {
+      max-width: 100%;
+      max-height: 200px;
+      object-fit: contain;
+      border-radius: 12px;
+      border: 2px dashed rgba(255, 255, 255, 0.2);
+      background: rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .upload-button {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
+    width: 100%;
+
+    ion-button {
+      --background: linear-gradient(135deg, #FF6347 0%, #FF4500 100%);
+      --color: white;
+      --box-shadow: 0 4px 12px rgba(255, 99, 71, 0.3);
+
+      &:hover {
+        --background: linear-gradient(135deg, #D32F2F 0%, #C62828 100%);
+      }
+    }
+
+    .file-input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+  }
+}
+// ✅ Nueva clase personalizada para la barra superior - ¡Esta es la clave!
+.custom-primary-toolbar {
+  --background: #f36a6a !important; // Azul profundo
+  --color: white !important;       // Texto blanco
+}
+
+
+.form-buttons {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  ion-button {
+    --border-radius: 12px;
+    height: 48px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+
+    &[color="success"] {
+      --background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%);
+      --box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+      border: 1px solid rgba(76, 175, 80, 0.5);
+    }
+
+    &[color="primary"] {
+      --background: linear-gradient(135deg, #FF6347 0%, #FF4500 100%);
+      --box-shadow: 0 4px 12px rgba(255, 99, 71, 0.3);
+      border: 1px solid rgba(255, 99, 71, 0.5);
+    }
+
+    &[color="warning"] {
+      --background: linear-gradient(135deg, #FFD700 0%, #FFA000 100%);
+      --color: #1a1410;
+      --box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+      border: 1px solid rgba(255, 215, 0, 0.5);
+    }
+
+    &[color="danger"] {
+      --background: linear-gradient(135deg, #F44336 0%, #C62828 100%);
+      --box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+      border: 1px solid rgba(244, 67, 54, 0.5);
+    }
+  }
+}
+
+ion-list {
+  background: transparent;
+  padding: 0;
+}
+
+ion-item {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  margin-bottom: 12px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.7);
+    border-color: #FFD700;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  ion-label {
+    h2 {
+      color: #FFD700;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    h3 {
+      color: #F5E6D3;
+      font-weight: 600;
+    }
+
+    p {
+      color: #E8D4B8;
+      font-size: 13px;
+    }
+
+    .prices span {
+      color: #FF6347;
+      font-weight: 700;
+      font-size: 14px;
+      background: rgba(255, 99, 71, 0.1);
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px dashed rgba(255, 99, 71, 0.3);
+    }
+  }
+
+  ion-thumbnail {
+    --size: 80px;
+    --border-radius: 10px;
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+
+    img {
+      object-fit: cover;
+    }
+  }
+
+  ion-buttons ion-button {
+    --border-radius: 8px;
+
+    &[color="primary"] {
+      --background: rgba(255, 99, 71, 0.15);
+      --color: #FF6347;
+    }
+
+    &[color="warning"] {
+      --background: rgba(255, 215, 0, 0.15);
+      --color: #FFD700;
+    }
+
+    &[color="danger"] {
+      --background: rgba(244, 67, 54, 0.15);
+      --color: #EF5350;
+    }
+  }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #E8D4B8;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 16px;
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  margin: 20px 0;
+
+  ion-icon {
+    font-size: 100px;
+    color: #FF6347;
+    opacity: 0.4;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  }
+
+  p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #F5E6D3;
+    font-weight: 500;
+  }
+
+  ion-button {
+    --background: linear-gradient(135deg, #FF6347 0%, #D32F2F 100%);
+    --box-shadow: 0 4px 12px rgba(255, 99, 71, 0.3);
+  }
+}
+
+ion-segment {
+  --background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 99, 71, 0.3);
+  border-radius: 12px;
+  padding: 4px;
+
+  ion-segment-button {
+    --color: #E8D4B8;
+    --color-checked: #FFD700;
+    --indicator-color: transparent;
+    --indicator-color-checked: transparent;
+    min-height: 40px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    
+    &::part(indicator-background) {
+      background: linear-gradient(135deg, #FF6347 0%, #D32F2F 100%);
+      border: 1px solid rgba(255, 215, 0, 0.5);
+    }
+
+    &:hover {
+      --color: #FFD700;
+    }
+    
+    ion-icon {
+      margin-bottom: 4px;
+    }
+
+    ion-label {
+      font-weight: 600;
+      font-size: 13px;
+    }
+  }
+}
+
+ion-fab-button {
+  --background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%);
+  --box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+  --color: white;
+  border: 2px solid rgba(255, 215, 0, 0.3);
+
+  &:hover {
+    --background: linear-gradient(135deg, #388E3C 0%, #2E7D32 100%);
+    transform: scale(1.1);
+  }
+}
+
+// Estilos para el profile card
+.profile-card {
+  background: linear-gradient(135deg, rgba(44, 24, 16, 0.8) 0%, rgba(26, 20, 16, 0.9) 100%);
+  border: 2px solid rgba(255, 99, 71, 0.4);
+  border-radius: 16px;
+
+  .profile-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 0;
+
+    ion-avatar {
+      border: 3px solid #FFD700;
+      box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+    }
+
+    .info-text {
+      h2 {
+        color: #FFD700;
+        margin-bottom: 8px;
+        font-size: 22px;
+      }
+
+      p {
+        color: #F5E6D3;
+        margin: 4px 0;
+        font-size: 14px;
+
+        strong {
+          color: #FF6347;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-container {
+    padding: 10px;
+  }
+
+  ion-item {
+    ion-label {
+      h2 {
+        font-size: 14px;
+      }
+
+      p {
+        font-size: 12px;
+      }
+    }
+
+    ion-thumbnail {
+      --size: 60px;
+    }
+  }
+}

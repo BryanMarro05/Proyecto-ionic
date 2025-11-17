@@ -1,3 +1,5 @@
+// src/app/pages/carrito/carrito.page.scss
+
 ion-content {
   --background: #0a0e2e;
 }
@@ -59,11 +61,29 @@ ion-item {
   margin-top: 4px;
 }
 
-/* Botón de eliminar */
+/* Botón de eliminar (X) */
 ion-button[color="danger"] {
-  --color: #ff6b6b;
-  --color-hover: #ff8787;
-  --color-activated: #ff5050;
+  --color: #FFC107;
+  --background: transparent;
+  --color-hover: #FFD54F;
+  --color-activated: #FDD835;
+  --border-radius: 50%;
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --padding-top: 8px;
+  --padding-bottom: 8px;
+
+  ion-icon {
+    font-size: 20px;
+  }
+
+  &:hover {
+    --background: rgba(255, 193, 7, 0.1);
+  }
+
+  &:active {
+    --background: rgba(255, 193, 7, 0.2);
+  }
 }
 
 /* ====== TOTAL ====== */
@@ -75,22 +95,230 @@ ion-button[color="danger"] {
   border-radius: 18px;
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.35);
   animation: fadeInUp 0.4s ease-in-out;
+
+  h3 {
+    color: #ffffff;
+    font-size: 1.4rem;
+    margin-bottom: 18px;
+    font-weight: 700;
+  }
 }
 
-.total-section h3 {
-  color: #ffffff;
-  font-size: 1.4rem;
-  margin-bottom: 18px;
-  font-weight: 700;
+/* ====== MENSAJE DE LOGIN ====== */
+.login-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 25px 20px;
+  background: linear-gradient(135deg, rgba(255, 92, 92, 0.15) 0%, rgba(255, 204, 112, 0.1) 100%);
+  border: 2px solid rgba(255, 92, 92, 0.3);
+  border-radius: 14px;
+  margin-bottom: 20px;
+  animation: fadeInScale 0.4s ease-in-out;
+
+  .alert-icon {
+    font-size: 48px;
+    color: #ffcc70;
+    animation: pulse 2s infinite;
+  }
+
+  p {
+    color: #ffffffcc;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  ion-button {
+    width: 100%;
+    margin-top: 5px;
+    --border-radius: 12px;
+    --box-shadow: 0 6px 16px rgba(255, 92, 92, 0.3);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    height: 50px;
+
+    &:hover {
+      --box-shadow: 0 8px 20px rgba(255, 92, 92, 0.4);
+    }
+  }
+}
+
+
+/* ====== BOTONES DE CANTIDAD ====== */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  // Botón "Quitar" (-)
+  .btn-remove {
+    --background: #f44336;
+    --color: white;
+    --border-radius: 6px;
+    --padding-start: 8px;
+    --padding-end: 8px;
+    --padding-top: 6px;
+    --padding-bottom: 6px;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+
+    ion-icon {
+      font-size: 18px;
+    }
+
+    &:hover {
+      --background: #da190b;
+    }
+
+    &[disabled] {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+
+  // Botón "Añadir" (+)
+  .btn-add {
+    --background: #4CAF50;
+    --color: white;
+    --border-radius: 6px;
+    --padding-start: 8px;
+    --padding-end: 8px;
+    --padding-top: 6px;
+    --padding-bottom: 6px;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+
+    ion-icon {
+      font-size: 18px;
+    }
+
+    &:hover {
+      --background: #45a049;
+    }
+
+    &[disabled] {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
 }
 
 /* ====== ANIMACIONES ====== */
 @keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.97); }
-  to { opacity: 1; transform: scale(1); }
+  from { 
+    opacity: 0; 
+    transform: scale(0.97); 
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { 
+    opacity: 0; 
+    transform: translateY(10px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes fadeInScale {
+  from { 
+    opacity: 0; 
+    transform: scale(0.95); 
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 576px) {
+  .empty-cart {
+    margin-top: 12vh;
+
+    .empty-icon {
+      font-size: 70px;
+    }
+
+    .empty-text {
+      font-size: 1.1rem;
+    }
+  }
+
+  .cart-card {
+    margin-top: 15px;
+  }
+
+  .item-title {
+    font-size: 1rem;
+  }
+
+  .item-price {
+    font-size: 0.9rem;
+  }
+
+  .total-section {
+    padding: 15px;
+    margin-top: 20px;
+
+    h3 {
+      font-size: 1.3rem;
+    }
+  }
+
+  .login-prompt {
+    padding: 20px 15px;
+
+    .alert-icon {
+      font-size: 42px;
+    }
+
+    p {
+      font-size: 0.95rem;
+    }
+
+    ion-button {
+      height: 48px;
+      font-size: 0.9rem;
+    }
+  }
+
+  .quantity-controls {
+    gap: 4px;
+
+    .btn-remove,
+    .btn-add {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+
+      ion-icon {
+        font-size: 16px;
+      }
+    }
+  }
 }

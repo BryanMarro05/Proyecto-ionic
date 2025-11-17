@@ -13,22 +13,32 @@
   --social-color-instagram: #e4405f; // Color oficial de Instagram
 }
 
-// Fondo principal de la página
+// Contenido principal de la página
 ion-content {
   --background: var(--bg-dark);
   color: var(--text-light);
-  padding: 16px;
+  // ✅ Añadir display:flex y justifyContent:center
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  // Mantener alignItems:center para centrado vertical si lo deseas, o cámbialo a 'flex-start' para alinear arriba
+  align-items: flex-start; // Cambié a 'flex-start' para que el contenido comience desde arriba
+  padding: 16px;
+}
+
+// Contenedor interno para alinear contenido
+.contact-container {
+  // ✅ Ajustar el ancho y centrar el contenedor hijo
+  width: 100%;
+  max-width: 800px; // O el ancho máximo que desees
+  padding: 0 10px; // Espacio lateral opcional
+  box-sizing: border-box; // Asegura que el padding no aumente el ancho total
 }
 
 // Encabezado de la sección
 .contact-header {
   text-align: center;
   margin-bottom: 2rem;
-  width: 100%;
-  max-width: 800px; // Limitar ancho en pantallas grandes
+  width: 100%; // Asegura que ocupe el ancho disponible dentro del contenedor
 
   h2 {
     color: var(--text-light);
@@ -43,6 +53,11 @@ ion-content {
     margin: 0;
   }
 }
+// ✅ Nueva clase personalizada para la barra superior - ¡Esta es la clave!
+.custom-primary-toolbar {
+  --background: #f36a6a !important; // Azul profundo
+  --color: white !important;       // Texto blanco
+}
 
 // Estilo general para las tarjetas de contacto
 .contact-card {
@@ -52,8 +67,7 @@ ion-content {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
   overflow: hidden;
   margin-bottom: 1rem;
-  max-width: 800px; // Limitar ancho
-  width: 100%;
+  width: 100%; // Asegura que ocupe el ancho disponible dentro del contenedor
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 
   &:hover {

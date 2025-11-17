@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { CartService } from 'src/app/services/cart';
+import { CartService } from 'src/app/services/cart.service';
 import { addIcons } from 'ionicons';
 import { cart, logoInstagram, mail } from 'ionicons/icons';
 

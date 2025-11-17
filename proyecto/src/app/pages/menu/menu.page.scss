@@ -1,5 +1,3 @@
-// menu.page.scss
-
 // Variables de color basadas en la imagen
 :root {
   --bg-dark: #00002a; // Fondo principal de la app
@@ -10,13 +8,71 @@
   --price-personal: #ffcc00; // Color para precio personal
   --price-grande: #ff5555; // Color para precio grande
   --button-bg: #ff5555; // Fondo de botones
-  --button-hover: #ff3333; // Hover de botones
+  --button-hover: #ff5c5c; // Hover de botones
+  --toolbar-bg: #1E3A8A; // ✅ Nuevo color: Azul profundo
+  --toolbar-color: #FFFFFF; // ✅ Color del texto en la barra
 }
 
-// Fondo principal de la página
+// ====== CONTENIDO PRINCIPAL (Centrado) ======
 ion-content {
   --background: var(--bg-dark);
   color: var(--text-light);
+  display: flex;
+  justify-content: center; // ✅ Centrado horizontal
+  align-items: flex-start; // ✅ Alineación vertical al inicio (top)
+  padding: 16px 0; // ✅ Padding vertical, sin padding horizontal para que el contenedor hijo centre
+}
+
+// ✅ Contenedor interno para limitar el ancho y centrar contenido
+.menu-container {
+  width: 100%;
+  max-width: 1200px; // ✅ Ancho máximo para pantallas grandes
+  padding: 0 10px; // ✅ Espacio lateral opcional
+  box-sizing: border-box; // ✅ Incluye padding en el ancho total
+  display: flex;
+  flex-direction: column;
+  align-items: center; // ✅ Centra hijos horizontalmente dentro del contenedor
+}
+
+// ====== ENCABEZADO DEL MENÚ (Barra superior) ======
+.custom-toolbar {
+  --background: #f36a6a !important; // ✅ Azul profundo
+  --color: #FFFFFF !important; // ✅ Texto blanco
+}
+
+// Estilo del título "Nuestro Menú"
+ion-title {
+  font-family: 'Arial', sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+// ====== SIDEBAR (Menú lateral) - Solo el color de fondo cambia a azul más oscuro ======
+ion-menu {
+  --background: #152A5E; // ✅ Azul más oscuro para el sidebar
+}
+
+// Título "Charlie Boys" en el sidebar
+.sidebar-header {
+  padding: 20px 0;
+  text-align: center;
+  background: #1E3A8A; // ✅ Mismo azul que la barra superior
+  color: white;
+  font-family: 'Arial', sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+// Logo y texto "Pizza & Grill" en el sidebar
+.sidebar-logo {
+  margin: 20px 0;
+  text-align: center;
+  color: white;
+  font-family: 'Arial', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 // Estilo general de las tarjetas de productos
@@ -28,18 +84,28 @@ ion-card.shake-card {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   margin: 1rem 0;
+  width: 100%; // ✅ Asegura que la tarjeta ocupe el ancho disponible dentro del contenedor centrado
+  max-width: 400px; // ✅ Limita el ancho máximo de cada tarjeta
 
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
   }
 
-  // Imagen del producto
+  // Imagen del producto - Versión optimizada
   img {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
+    height: auto;
+    max-height: 220px;
+    object-fit: contain;
+    object-position: center;
+    background: linear-gradient(135deg, #0d0c2b, #0e0e3f);
     border-bottom: 1px solid var(--card-border);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.02);
+    }
   }
 
   // Encabezado de la tarjeta (nombre y descripción)
@@ -153,7 +219,7 @@ ion-card.shake-card {
   }
 }
 
-// Estilo del modal del carrito
+// Estilo del modal del carrito (ahora no se usa, pero lo dejamos por si acaso)
 ion-modal {
   --ion-background-color: var(--bg-dark);
   color: var(--text-light);
@@ -305,6 +371,7 @@ ion-modal {
           background: var(--button-bg);
           color: white;
         }
+        
       }
     }
   }

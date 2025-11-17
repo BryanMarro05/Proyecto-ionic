@@ -1,7 +1,12 @@
+<!-- src/app/pages/carrito/carrito.page.html -->
+
 <ion-header>
-  <ion-toolbar color="danger">
+  <ion-toolbar color="charlie">
+    <!-- Botón para volver al menú -->
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-button routerLink="/menu">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
     </ion-buttons>
 
     <ion-title>Carrito de Compra</ion-title>
@@ -22,6 +27,7 @@
     <ion-icon name="cart-outline" class="empty-icon"></ion-icon>
     <p class="empty-text">Tu carrito está vacío</p>
     <ion-button routerLink="/menu" color="danger" expand="block" class="btn-rounded">
+      <ion-icon name="restaurant-outline" slot="start"></ion-icon>
       Ver Menú
     </ion-button>
   </div>
@@ -30,11 +36,37 @@
   <ion-card *ngIf="cartItems.length > 0" class="cart-card">
     <ion-list>
       <ion-item *ngFor="let item of cartItems; let i = index" lines="none">
+        <!-- Imagen pequeña del producto -->
+        <ion-avatar slot="start">
+          <img [src]="item.image ? item.image : 'https://placehold.co/60x60/1d1641/ffffff?text=Sin+Img'" 
+               alt="Imagen del producto" 
+               onerror="this.src='https://placehold.co/60x60/1d1641/ffffff?text=Error'" />
+        </ion-avatar>
+
+        <!-- Nombre y precio -->
         <ion-label>
-          <h2 class="item-title">{{ item.name }}</h2>
-          <p class="item-price">${{ item.price.toFixed(2) }}</p>
+          <h2 class="item-title">
+            {{ item.name.replace(' ()', '') }}
+          </h2>
+          <p class="item-price">
+            {{ item.quantity }}x {{ item.name.replace(' ()', '') }} — ${{ formatPrice(item.price * item.quantity) }}
+          </p>
         </ion-label>
 
+        <!-- Botones de cantidad -->
+        <div slot="end" class="quantity-controls">
+          <!-- Botón Quitar (-) -->
+          <ion-button class="btn-remove" size="small" (click)="decreaseQuantity(i)" [disabled]="item.quantity <= 1">
+            <ion-icon name="remove"></ion-icon>
+          </ion-button>
+
+          <!-- Botón Añadir (+) -->
+          <ion-button class="btn-add" size="small" (click)="increaseQuantity(i)">
+            <ion-icon name="add"></ion-icon>
+          </ion-button>
+        </div>
+
+        <!-- Botón de eliminar -->
         <ion-button fill="clear" color="danger" (click)="removeItem(i)">
           <ion-icon name="close-circle-outline"></ion-icon>
         </ion-button>
@@ -44,11 +76,35 @@
 
   <!-- TOTAL -->
   <div *ngIf="cartItems.length > 0" class="total-section">
-    <h3>Total: ${{ getTotal().toFixed(2) }}</h3>
+    <h3>Total: ${{ formatPrice(getTotal()) }}</h3>
 
-    <ion-button expand="block" color="success" class="btn-rounded" (click)="checkout()">
-      Finalizar Pedido
-      <ion-icon name="checkmark-circle-outline" slot="end"></ion-icon>
+    <!-- ✅ Mensaje y botón si NO está logueado -->
+    <div *ngIf="!authService.isLoggedIn()" class="login-prompt">
+      <ion-icon name="alert-circle-outline" class="alert-icon"></ion-icon>
+      <p>Inicia sesión para completar tu pedido</p>
+      
+      <!-- ✅ BOTÓN PARA IR AL LOGIN -->
+      <ion-button 
+        expand="block" 
+        color="primary" 
+        class="btn-rounded" 
+        routerLink="/login"
+        size="large">
+        <ion-icon name="log-in-outline" slot="start"></ion-icon>
+        INICIAR SESIÓN PARA COMPRAR
+      </ion-button>
+    </div>
+
+    <!-- ✅ Botón Finalizar Pedido (solo si está logueado) -->
+    <ion-button 
+      *ngIf="authService.isLoggedIn()"
+      expand="block" 
+      color="success" 
+      class="btn-rounded" 
+      (click)="checkout()"
+      size="large">
+      <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+      FINALIZAR PEDIDO
     </ion-button>
   </div>
 

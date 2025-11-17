@@ -1,16 +1,18 @@
 // promociones.page.scss
 
-// Variables de color basadas en la imagen
+// Variables de color basadas en la imagen, con azul como primario
 :root {
-  --bg-dark: #080891; // Fondo principal
-  --card-bg: #1c1a55; // Fondo de las tarjetas
+  --bg-dark: #080891; // Fondo principal (azul oscuro)
+  --card-bg: #1c1a55; // Fondo de las tarjetas (morado/azul oscuro)
   --card-border: rgba(255, 255, 255, 0.1); // Borde de tarjetas
   --text-light: #ffffff; // Texto principal
   --text-muted: #cccccc; // Texto secundario
-  --chip-bg-danger: #ff5555; // Fondo del chip danger
-  --chip-bg-success: #4caf50; // Fondo del chip success (puedes ajustar)
-  --chip-bg-warning: #ffcc00; // Fondo del chip warning
+  --chip-bg-danger: #ef4444; // Rojo para chips de estado (opcional)
+  --chip-bg-success: #4caf50; // Verde para chips de estado (opcional)
+  --chip-bg-warning: #f59e0b; // Naranja para chips de estado (opcional), no usado como fondo de header
   --chip-text-dark: #00002a; // Texto oscuro para chips con fondo claro
+  --toolbar-bg: #1E3A8A; // ✅ Azul profundo para la barra superior
+  --toolbar-color: white; // ✅ Blanco para el texto del header
 }
 
 // Fondo principal de la página
@@ -18,9 +20,22 @@
   --background: var(--bg-dark);
   color: var(--text-light);
   padding: 16px;
+  // ✅ Centrado horizontal del contenido principal
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100%; // Asegura que ocupe al menos el 100% de la altura
+}
+
+// Contenedor interno para limitar ancho y centrar contenido
+.promos-container {
+  width: 100%;
+  max-width: 800px; // Ancho máximo para pantallas grandes
+  padding: 0 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center; // Centra los hijos horizontalmente
 }
 
 // Estilo general de las tarjetas de promoción
@@ -31,9 +46,8 @@
   overflow: hidden;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin: 1rem auto;
-  max-width: 800px; // Limitar ancho en pantallas grandes
-  width: 100%;
+  margin: 1rem 0; // Margen superior e inferior
+  width: 100%; // Asegura que ocupe el ancho disponible dentro del contenedor
 
   &:hover {
     transform: translateY(-3px);
@@ -110,22 +124,22 @@
     --color: var(--text-light);
   }
 
-  // Variante warning (amarillo)
+  // Variante warning (naranja)
   &.promo-chip-warning {
     --background: var(--chip-bg-warning);
     --color: var(--chip-text-dark); // Texto oscuro para contraste
   }
 }
 
-// Ajustes de botones de header
-ion-toolbar[color="danger"] {
-  --background: var(--chip-bg-danger); // Color rojo del header
-  --color: white;
+.custom-toolbar {
+  --background: #f36a6a !important; // ✅ Azul profundo
+  --color: #FFFFFF !important; // ✅ Texto blanco
 }
 
+// Ajustes de badges en header (si se usan)
 ion-badge[color="primary"] {
-  --background: var(--chip-bg-warning); // Color amarillo para el badge
-  --color: var(--bg-dark);
+  --background: var(--chip-bg-warning); // Naranja
+  --color: var(--chip-text-dark);
   position: absolute;
   top: 5px;
   right: 5px;

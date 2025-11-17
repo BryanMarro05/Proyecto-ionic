@@ -1,0 +1,244 @@
+/* pedidos-admin.page.scss */
+/* Diseño sorprendente: Paleta de azules profundos, verdes esmeralda y rojos granate */
+
+.admin-content {
+  --background: linear-gradient(180deg, #0f0c1a 0%, #0a0814 100%); // Fondo ultra oscuro con tono morado
+}
+
+.admin-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(15, 12, 26, 0.9) 0%, rgba(10, 8, 20, 0.95) 100%);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.6), 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Tarjeta principal */
+.products-card {
+  background: rgba(15, 12, 26, 0.3);
+  border: 1px solid rgba(59, 70, 108, 0.4); // Azul grisáceo
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+
+  ion-card-title {
+    color: #BBF7D0; // Verde claro / Cian suave
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    padding: 10px 0;
+    background: linear-gradient(to bottom, rgba(59, 70, 108, 0.2), transparent);
+    border-bottom: 1px solid rgba(59, 70, 108, 0.2);
+  }
+}
+
+/* Lista de pedidos */
+ion-list {
+  background: transparent;
+  padding: 0;
+}
+
+ion-item {
+  background: linear-gradient(135deg, rgba(15, 12, 26, 0.5) 0%, rgba(10, 8, 20, 0.6) 100%);
+  border: 1px solid rgba(59, 70, 108, 0.3);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    background: linear-gradient(135deg, rgba(15, 12, 26, 0.7) 0%, rgba(10, 8, 20, 0.8) 100%);
+    border-color: #3B466C; // Azul grisáceo más intenso
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  ion-thumbnail {
+    --size: 60px;
+    --border-radius: 10px;
+    background: rgba(59, 70, 108, 0.15);
+    border: 2px solid rgba(59, 70, 108, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    ion-icon {
+      font-size: 28px;
+      color: #BBF7D0; // Verde claro
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  ion-label {
+    h2 {
+      color: #BBF7D0; // Verde claro
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 6px;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    p {
+      color: #E5E7EB; // Gris muy claro
+      font-size: 13px;
+      margin: 2px 0;
+      line-height: 1.4;
+
+      strong {
+        color: #BBF7D0; // Verde claro
+        font-weight: 600;
+      }
+
+      // Clase para el estado del pedido
+      .pedido-estado {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 6px;
+        font-weight: 700;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        margin-top: 4px;
+        border: 1px solid transparent;
+        color: white;
+      }
+    }
+  }
+
+  ion-buttons ion-button {
+    --border-radius: 8px;
+    height: 48px; // ✅ Aumentado de 36px a 48px
+    width: 48px;   // ✅ Aumentado de 36px a 48px
+    min-height: 48px; // ✅ Aumentado de 36px a 48px
+    --background: transparent; // Fondo transparente
+    --box-shadow: none; // Sin sombra
+
+    &[color="primary"] {
+      --color: #BBF7D0; // Verde claro
+      --border: 1px solid rgba(59, 70, 108, 0.5);
+      &:hover {
+        --background: rgba(59, 70, 108, 0.2);
+        --border: 1px solid #3B466C;
+      }
+    }
+
+    &[color="warning"] {
+      --color: #F59E0B; // Naranja cálido
+      --border: 1px solid rgba(245, 158, 11, 0.5);
+      &:hover {
+        --background: rgba(245, 158, 11, 0.15);
+        --border: 1px solid #F59E0B;
+      }
+    }
+
+    &[color="danger"] {
+      --color: #EF4444; // Rojo vivo
+      --border: 1px solid rgba(239, 68, 68, 0.5);
+      &:hover {
+        --background: rgba(239, 68, 68, 0.15);
+        --border: 1px solid #EF4444;
+      }
+    }
+  }
+}
+
+/* Estados de pedido - Nuevo diseño sorprendente */
+.estado-pendiente {
+  background: linear-gradient(135deg, #6B7280 0%, #4B5563 100%); // Gris acero
+  color: white;
+  border: 1px solid #4B5563;
+}
+
+.estado-completado {
+  background: linear-gradient(135deg, #166534 0%, #15803D 100%); // Verde esmeralda
+  color: white;
+  border: 1px solid #15803D;
+}
+
+.estado-cancelado {
+  background: linear-gradient(135deg, #7F1D1D 0%, #991B1B 100%); // Rojo granate
+  color: white;
+  border: 1px solid #991B1B;
+}
+
+.estado-en-proceso {
+  background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%); // Azul profundo
+  color: white;
+  border: 1px solid #1E40AF;
+}
+.custom-toolbar {
+  --background: #f36a6a !important; // ✅ Azul profundo
+  --color: #FFFFFF !important; // ✅ Texto blanco
+}
+
+/* Estado vacío */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #E5E7EB; // Gris muy claro
+  background: linear-gradient(135deg, rgba(15, 12, 26, 0.4) 0%, rgba(10, 8, 20, 0.5) 100%);
+  border-radius: 16px;
+  border: 2px dashed rgba(59, 70, 108, 0.3); // Borde punteado azul grisáceo
+  margin: 20px 0;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+
+  ion-icon {
+    font-size: 100px;
+    color: #3B466C; // Azul grisáceo
+    opacity: 0.6;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  }
+
+  p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #E5E7EB;
+    font-weight: 500;
+  }
+
+  ion-button {
+    --background: linear-gradient(135deg, #3B466C 0%, #2563EB 100%); // Azul profundo
+    --box-shadow: 0 4px 12px rgba(59, 70, 108, 0.3);
+    border: 1px solid rgba(59, 70, 108, 0.5);
+    width: fit-content;
+    margin: 0 auto;
+  }
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .admin-container {
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .products-card ion-card-title {
+    font-size: 18px;
+  }
+
+  ion-item ion-label h2 {
+    font-size: 14px;
+  }
+
+  ion-item ion-label p {
+    font-size: 12px;
+  }
+
+  ion-item ion-thumbnail {
+    --size: 50px;
+  }
+
+  ion-item ion-buttons ion-button {
+    height: 40px; // ✅ Reducido ligeramente en móviles
+    width: 40px;
+  }
+}

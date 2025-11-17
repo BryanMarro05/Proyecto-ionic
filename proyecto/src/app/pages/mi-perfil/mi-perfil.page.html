@@ -1,0 +1,168 @@
+<ion-header>
+  <ion-toolbar class="custom-toolbar">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Mi Perfil</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- 
+    Usamos un 'profile-container' para centrar el contenido 
+    y limitar su ancho en pantallas grandes, dándole un look más profesional.
+  -->
+  <div class="profile-container">
+
+    <!-- Tarjeta de Información del Usuario -->
+    <ion-card>
+      <!-- 
+        Usamos la nueva sintaxis @if para mostrar el contenido
+        solo cuando 'user' NO es null.
+      -->
+      @if (user) {
+        <ion-card-header>
+          <!-- Título dinámico basado en el rol -->
+          @if (user.role === 'admin') {
+            <ion-card-title>Información del Administrador</ion-card-title>
+          } @else {
+            <!-- Corregido el typo de mi última respuesta -->
+            <ion-card-title>Información.</ion-card-title>
+          }
+        </ion-card-header>
+
+        <ion-card-content>
+          <!-- 
+            Contenedor flex para alinear el avatar y el texto.
+            Los estilos están en 'mi-perfil.page.scss'.
+          -->
+          <div class="profile-details">
+            <ion-avatar slot="start">
+              <ion-icon name="person-circle" color="primary" class="profile-avatar"></ion-icon>
+            </ion-avatar>
+            <div class="profile-text">
+              <h3>{{ user.name || 'Nombre no especificado' }}</h3>
+              <p>{{ user.email || 'Email no especificado' }}</p>
+              
+              <!-- Mostrar Fecha de Registro si existe -->
+              @if (user.created_at) {
+                <p><strong>Miembro desde:</strong> {{ user.created_at | date:'mediumDate' }}</p>
+              }
+            </div>
+          </div>
+        </ion-card-content>
+
+      } @else {
+        <!-- 
+          Bloque @else: Se muestra mientras 'user' es null (cargando).
+          Usamos 'ion-skeleton-text' para una mejor UX.
+        -->
+        <ion-card-header>
+          <ion-skeleton-text [animated]="true" style="width: 60%; height: 22px;"></ion-skeleton-text>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="profile-details">
+            <ion-avatar slot="start">
+              <ion-skeleton-text [animated]="true" class="profile-avatar-skeleton"></ion-skeleton-text>
+            </ion-avatar>
+            <div class="profile-text">
+              <ion-skeleton-text [animated]="true" style="width: 80%; height: 20px;"></ion-skeleton-text>
+              <ion-skeleton-text [animated]="true" style="width: 70%; height: 16px;"></ion-skeleton-text>
+              <ion-skeleton-text [animated]="true" style="width: 50%; height: 16px;"></ion-skeleton-text>
+            </div>
+          </div>
+        </ion-card-content>
+      }
+    </ion-card>
+
+    <!-- Tarjeta de Formulario de Edición -->
+    <ion-card>
+      <!-- Solo mostramos el formulario si el usuario ha cargado -->
+      @if (user) {
+        <ion-card-header>
+          <ion-card-title>Editar Perfil</ion-card-title>
+        </ion-card-header>
+        
+        <ion-card-content>
+          <!-- 
+            Usamos <form> con (ngSubmit) para un manejo correcto.
+            Los botones dentro del form deben ser type="submit" o type="button".
+          -->
+          <form (ngSubmit)="saveProfile()">
+            
+            <ion-item>
+              <!-- 
+                Usamos el API moderno de ion-input con label y label-placement.
+                Es más limpio y accesible.
+              -->
+              <!-- 
+                ✅ CORRECCIÓN DEFINITIVA: 
+                El comentario está AFUERA de la etiqueta.
+                Y 'name' está adentro.
+              -->
+              <ion-input
+                label="Nombre"
+                label-placement="floating"
+                [(ngModel)]="editForm.name"
+                name="name"
+                required
+                type="text"
+                placeholder="Tu nombre completo">
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <!-- 
+                ✅ CORRECCIÓN DEFINITIVA: 
+                El comentario está AFUERA de la etiqueta.
+                Y 'name' está adentro.
+              -->
+              <ion-input
+                label="Email"
+                label-placement="floating"
+                [(ngModel)]="editForm.email"
+                name="email"
+                required
+                type="email"
+                placeholder="tu@email.com">
+              </ion-input>
+            </ion-item>
+
+            <!-- Contenedor para los botones del formulario -->
+            <div class="form-button-stack">
+              <!-- type="submit" activa el (ngSubmit) del formulario -->
+              <ion-button type="submit" expand="block" color="success">
+                <ion-icon slot="start" name="save-outline"></ion-icon>
+                Guardar Cambios
+              </ion-button>
+              
+              <!-- type="button" evita que se envíe el formulario -->
+              <ion-button type="button" (click)="changePassword()" expand="block" fill="outline" color="warning">
+                <ion-icon slot="start" name="key-outline"></ion-icon>
+                Cambiar Contraseña
+              </ion-button>
+            </div>
+
+          </form>
+        </ion-card-content>
+
+      } @else {
+        <!-- Skeleton para el formulario mientras carga -->
+        <ion-card-header>
+           <ion-skeleton-text [animated]="true" style="width: 40%; height: 22px;"></ion-skeleton-text>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-skeleton-text [animated]="true" style="height: 50px; width: 100%; margin-bottom: 10px; border-radius: 8px;"></ion-skeleton-text>
+          <ion-skeleton-text [animated]="true" style="height: 50px; width: 100%; margin-bottom: 20px; border-radius: 8px;"></ion-skeleton-text>
+          <ion-skeleton-text [animated]="true" style="height: 45px; width: 100%; border-radius: 8px;"></ion-skeleton-text>
+        </ion-card-content>
+      }
+    </ion-card>
+
+  </div> <!-- Fin de .profile-container -->
+</ion-content>

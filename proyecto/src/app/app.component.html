@@ -1,23 +1,101 @@
-<!-- src/app/app.component.html -->
 <ion-app>
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
-      <ion-header>
-        <ion-toolbar color="primary">
-          <ion-title></ion-title>
-        </ion-toolbar>
-      </ion-header>
+
+
       <ion-content>
+        
+        <div class="menu-header-image">
+          <img src="https://scontent.fsal14-1.fna.fbcdn.net/v/t39.30808-6/480560399_1057459869758905_1030573287141200152_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=QuEGXCbT9KoQ7kNvwEF6trx&_nc_oc=Adl8jxUctFoTqnfSZ_OAvAUCAs8lhS5nY5gHw-QxgbBmhHpZUV9PdohsOt1UpthvrG4&_nc_zt=23&_nc_ht=scontent.fsal14-1.fna&_nc_gid=n50LeBfAjBfaMybOEbaMTw&oh=00_Afj_9N3fe08BACpnU9d8RQUDoz1TFEQQvXgMMGg86yb7AA&oe=69206BF1" alt="Charlie Boy Pizza & Grill" />
+          <!-- Overlay oscuro para mejorar legibilidad -->
+          <div class="menu-logo-overlay">
+            <ion-icon name="pizza-outline" class="menu-logo"></ion-icon>
+            <h3>Pizza & Grill</h3>
+          </div>
+        </div>
+
         <ion-list>
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item [routerLink]="[p.url]" routerDirection="root">
-              <ion-icon slot="start" [name]="p.icon"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
+          <div class="main-nav-items">
+            <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+              <ion-item [routerLink]="[p.url]" routerDirection="root" lines="none" detail="false">
+                <ion-icon slot="start" [name]="p.icon"></ion-icon>
+                <ion-label>{{ p.title }}</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </div>
+
+          <!-- Botón de Login (si NO está logueado) -->
+          <ion-menu-toggle auto-hide="false" *ngIf="!isLoggedIn">
+            <ion-item [routerLink]="['/login']" routerDirection="root" lines="none" detail="false" class="login-item">
+              <ion-icon slot="start" name="person-circle-outline"></ion-icon>
+              <ion-label>Iniciar Sesión</ion-label>
             </ion-item>
           </ion-menu-toggle>
+
+          <!-- Menú del usuario (si está logueado) -->
+          <div *ngIf="isLoggedIn" class="user-menu">
+            <!-- Info del usuario (Clickable) -->
+            <div class="user-info" (click)="toggleUserMenu()">
+              <div class="user-avatar">
+                <ion-icon name="person-circle"></ion-icon>
+              </div>
+              <div class="user-details">
+                <h3>{{ userName }}</h3>
+                <p>{{ userEmail }}</p>
+              </div>
+              <ion-icon [name]="userMenuOpen ? 'chevron-up' : 'chevron-down'" class="chevron"></ion-icon>
+            </div>
+
+            <!-- Opciones desplegables -->
+            <div class="user-options" [class.open]="userMenuOpen">
+              
+              <!-- Opción de Admin (solo si es admin) -->
+              <ion-menu-toggle auto-hide="false" *ngIf="isAdmin">
+                <ion-item button [routerLink]="['/admin']" lines="none" class="admin-option" detail="false">
+                  <ion-icon slot="start" name="settings-outline"></ion-icon>
+                  <ion-label>Administrador</ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+
+              <!-- Opción Mi Perfil -->
+              <ion-menu-toggle auto-hide="false">
+                <ion-item button [routerLink]="['/perfil']" lines="none" class="user-option" detail="false">
+                  <ion-icon slot="start" name="person-outline"></ion-icon>
+                  <ion-label>Mi Perfil</ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+
+              <!-- Opción Mis Pedidos (para usuarios normales) -->
+              <ion-menu-toggle auto-hide="false" *ngIf="!isAdmin">
+                <ion-item button [routerLink]="['/mis-pedidos']" lines="none" class="user-option" detail="false">
+                  <ion-icon slot="start" name="cart-outline"></ion-icon>
+                  <ion-label>Pedidos Realizados</ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+
+              <!-- Opción Pedidos Realizados (solo para admin) -->
+              <ion-menu-toggle auto-hide="false" *ngIf="isAdmin">
+                <ion-item button [routerLink]="['/pedidos-admin']" lines="none" class="admin-option" detail="false">
+                  <ion-icon slot="start" name="cart-outline"></ion-icon>
+                  <ion-label>Pedidos Realizados</ion-label>
+                </ion-item> <!-- ✅ CORREGIDO: de </-item> a </ion-item> -->
+              </ion-menu-toggle>
+
+              <!-- Opción Cerrar Sesión -->
+              <ion-menu-toggle auto-hide="false">
+                <ion-item button (click)="logout()" lines="none" class="logout-option" detail="false">
+                  <ion-icon slot="start" name="log-out-outline"></ion-icon>
+                  <ion-label>Cerrar Sesión</ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            </div>
+            
+          </div>
         </ion-list>
       </ion-content>
     </ion-menu>
+
+    <!-- Contenido principal de la aplicación -->
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
 </ion-app>

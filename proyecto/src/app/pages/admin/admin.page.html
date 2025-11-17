@@ -1,0 +1,209 @@
+<ion-header>
+  <ion-toolbar class="custom-primary-toolbar">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Panel de Administración</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <!-- Tabs de categorías -->
+  <ion-toolbar color="danger">
+    <ion-segment [(ngModel)]="activeTab" (ionChange)="changeTab(activeTab)">
+      <ion-segment-button *ngFor="let tab of tabs" [value]="tab.id">
+        <ion-icon [name]="tab.icon"></ion-icon>
+        <ion-label>{{ tab.label }}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="admin-content">
+  <div class="admin-container">
+    
+    <!-- Formulario -->
+    <ion-card class="form-card">
+      <ion-card-header>
+        <ion-card-title>
+          {{ editMode ? 'Editar Producto' : 'Nuevo Producto' }}
+        </ion-card-title>
+      </ion-card-header>
+      
+      <ion-card-content>
+        <form>
+          <ion-item lines="none" class="input-item">
+            <ion-label position="stacked">Nombre *</ion-label>
+            <ion-input
+              [(ngModel)]="productForm.nombre"
+              name="nombre"
+              placeholder="Ej: Pizza Pepperoni"
+              required
+            ></ion-input>
+          </ion-item>
+
+          <ion-item lines="none" class="input-item">
+            <ion-label position="stacked">Descripción *</ion-label>
+            <ion-textarea
+              [(ngModel)]="productForm.descripcion"
+              name="descripcion"
+              placeholder="Descripción del producto"
+              rows="3"
+              required
+            ></ion-textarea>
+          </ion-item>
+
+          <!-- Precios para Pizzas y Hamburguesas -->
+          <div *ngIf="activeTab === 'pizzas' || activeTab === 'hamburguesas'">
+            <ion-item lines="none" class="input-item">
+              <ion-label position="stacked">
+                Precio {{ activeTab === 'pizzas' ? 'Personal' : 'Simple' }} *
+              </ion-label>
+              <ion-input
+                type="number"
+                [(ngModel)]="productForm.precioP"
+                name="precioP"
+                placeholder="0.00"
+                required
+              ></ion-input>
+            </ion-item>
+
+            <ion-item lines="none" class="input-item">
+              <ion-label position="stacked">
+                Precio {{ activeTab === 'pizzas' ? 'Grande' : 'Doble' }} *
+              </ion-label>
+              <ion-input
+                type="number"
+                [(ngModel)]="productForm.precioG"
+                name="precioG"
+                placeholder="0.00"
+                required
+              ></ion-input>
+            </ion-item>
+          </div>
+
+          <!-- Precio único para Bebidas y Hot Dogs -->
+          <ion-item
+            *ngIf="activeTab === 'bebidas' || activeTab === 'hotdogs'"
+            lines="none"
+            class="input-item"
+          >
+            <ion-label position="stacked">Precio *</ion-label>
+            <ion-input
+              type="number"
+              [(ngModel)]="productForm.precio"
+              name="precio"
+              placeholder="0.00"
+              required
+            ></ion-input>
+          </ion-item>
+
+          <!-- Nueva sección para la imagen -->
+          <ion-item lines="none" class="input-item">
+            <ion-label position="stacked">Imagen</ion-label>
+            <!-- Previsualización de la imagen -->
+            <div class="image-preview-container" *ngIf="previewUrl">
+              <img [src]="previewUrl" alt="Previsualización de la imagen" class="image-preview" />
+            </div>
+            <!-- Input para subir archivo -->
+            <ion-button fill="outline" size="small" expand="block" class="upload-button">
+              <ion-icon name="image" slot="start"></ion-icon>
+              Subir Imagen
+              <input
+                type="file"
+                accept="image/*"
+                (change)="onFileSelected($event)"
+                class="file-input"
+              />
+            </ion-button>
+            <!-- Input para URL de imagen -->
+            <ion-input
+              [(ngModel)]="imageUrl"
+              name="imagenUrl"
+              placeholder="O pegar URL de imagen"
+              (ionInput)="onImageUrlChange()"
+            ></ion-input>
+          </ion-item>
+          <!-- Fin de la nueva sección -->
+
+          <div class="form-buttons">
+            <ion-button expand="block" (click)="saveProduct()" color="success">
+              <ion-icon slot="start" name="checkmark-circle"></ion-icon>
+              {{ editMode ? 'Actualizar' : 'Guardar' }}
+            </ion-button>
+            
+            <ion-button
+              *ngIf="editMode"
+              expand="block"
+              (click)="cancelEdit()"
+              fill="outline"
+              color="medium"
+            >
+              <ion-icon slot="start" name="close-circle"></ion-icon>
+              Cancelar
+            </ion-button>
+          </div>
+        </form>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Lista de productos -->
+    <ion-card class="products-card">
+      <ion-card-header>
+        <ion-card-title>
+          Productos ({{ products.length }})
+        </ion-card-title>
+      </ion-card-header>
+      
+      <ion-card-content>
+        <ion-list *ngIf="products.length > 0">
+          <ion-item *ngFor="let product of products" lines="full">
+            <ion-thumbnail slot="start">
+              <img
+                [src]="product.imagen || 'https://placehold.co/100x100/ff5a5f/ffffff?text=Sin+Imagen'"
+                [alt]="product.nombre"
+              />
+            </ion-thumbnail>
+            
+            <ion-label>
+              <h2>{{ product.nombre }}</h2>
+              <p>{{ product.descripcion }}</p>
+              <p class="prices">
+                <span *ngIf="product.precioP">Personal: ${{ product.precioP }}</span>
+                <span *ngIf="product.precioG">Grande: ${{ product.precioG }}</span>
+                <span *ngIf="product.precio">Precio: ${{ product.precio }}</span>
+              </p>
+            </ion-label>
+
+            <ion-buttons slot="end">
+              <ion-button (click)="editProduct(product)" color="primary">
+                <ion-icon slot="icon-only" name="create"></ion-icon>
+              </ion-button>
+              <ion-button (click)="deleteProduct(product)" color="danger">
+                <ion-icon slot="icon-only" name="trash"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-item>
+        </ion-list>
+
+        <div *ngIf="products.length === 0" class="empty-state">
+          <ion-icon name="pizza-outline"></ion-icon>
+          <p>No hay productos en esta categoría</p>
+          <ion-button (click)="newProduct()" size="small">
+            Agregar Primero
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+</ion-content>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button color="success" (click)="newProduct()">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

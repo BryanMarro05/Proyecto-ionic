@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar class="custom-toolbar">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Pedidos Realizados</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="admin-content">
+  <div class="admin-container">
+
+    <!-- Título -->
+    <ion-card class="products-card">
+      <ion-card-header>
+        <ion-card-title>Pedidos Realizados ({{ pedidos.length }})</ion-card-title>
+      </ion-card-header>
+      
+      <ion-card-content>
+        <ion-list *ngIf="pedidos.length > 0">
+          <ion-item *ngFor="let pedido of pedidos" lines="full">
+            <ion-thumbnail slot="start">
+              <ion-icon name="cart"></ion-icon>
+            </ion-thumbnail>
+            
+            <ion-label>
+              <h2>Pedido #{{ pedido.id }}</h2>
+              <p><strong>Cliente:</strong> {{ pedido.user?.name || 'Anónimo' }}</p>
+              <p><strong>Email:</strong> {{ pedido.user?.email || 'N/A' }}</p>
+              <p><strong>Total:</strong> ${{ pedido.total }}</p>
+              <p><strong>Fecha:</strong> {{ pedido.created_at | date:'medium' }}</p>
+              <p><strong>Estado:</strong> 
+                <span [class]="getEstadoClass(pedido.estado)">{{ pedido.estado }}</span>
+              </p>
+              <p><strong>Items:</strong> {{ pedido.items.length }} artículos</p>
+            </ion-label>
+
+            <ion-buttons slot="end">
+              <!-- Botón para ver detalles -->
+              <ion-button (click)="viewPedido(pedido)" color="primary">
+                <ion-icon slot="icon-only" name="eye"></ion-icon>
+              </ion-button>
+              <!-- Botón para actualizar estado -->
+              <ion-button (click)="updatePedidoStatus(pedido)" color="warning">
+                <ion-icon slot="icon-only" name="checkmark-circle"></ion-icon>
+              </ion-button>
+              <!-- Botón para eliminar pedido -->
+              <ion-button (click)="deletePedido(pedido)" color="danger">
+                <ion-icon slot="icon-only" name="trash"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-item>
+        </ion-list>
+
+        <div *ngIf="pedidos.length === 0" class="empty-state">
+          <ion-icon name="cart-outline"></ion-icon>
+          <p>No hay pedidos registrados</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+</ion-content>

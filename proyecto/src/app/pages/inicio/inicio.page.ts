@@ -1,10 +1,13 @@
 // src/app/pages/inicio/inicio.page.ts
-import { Component } from '@angular/core';
-import { IonicModule } from '@ionic/angular'; // ✅ Solo esto
+import { Component, OnInit } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common'; // ✅ Necesario para *ngIf
-import { CartService } from 'src/app/services/cart';
+import { CommonModule } from '@angular/common';
+import { CartService } from 'src/app/services/cart.service';
+import { AuthService } from 'src/app/services/auth.service'; // ← NUEVO
+// @ts-ignore
 import { addIcons } from 'ionicons';
+// @ts-ignore
 import { cart } from 'ionicons/icons';
 
 @Component({
@@ -13,14 +16,32 @@ import { cart } from 'ionicons/icons';
   styleUrls: ['./inicio.page.scss'],
   standalone: true,
   imports: [
-    IonicModule,     // ✅ Incluye IonButton, IonIcon, etc.
+    IonicModule,
     RouterModule,
-    CommonModule     // ✅ Necesario para *ngIf, *ngFor
+    CommonModule
   ]
 })
-export class InicioPage {
-  constructor(private cartService: CartService) {
+export class InicioPage implements OnInit {
+  isLoggedIn = false; // ← NUEVO
+
+  constructor(
+    private cartService: CartService,
+    private authService: AuthService // ← NUEVO
+  ) {
     addIcons({ cart });
+  }
+
+  ngOnInit() {
+    this.checkAuthStatus();
+  }
+
+  ionViewWillEnter() {
+    // Se ejecuta cada vez que entras a la página
+    this.checkAuthStatus();
+  }
+
+  checkAuthStatus() {
+    this.isLoggedIn = this.authService.isAuthenticated();
   }
 
   getCartCount(): number {

@@ -69,6 +69,10 @@
     }
   }
 }
+.custom-toolbar {
+  --background: #f36a6a !important; // ✅ Azul profundo
+  --color: #FFFFFF !important; // ✅ Texto blanco
+}
 
 // Contenedor del mapa
 .map-container {

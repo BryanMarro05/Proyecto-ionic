@@ -1,0 +1,144 @@
+.register-content {
+  --background: linear-gradient(180deg, #2C1810 0%, #1a1410 100%);
+}
+
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.register-header {
+  text-align: center;
+  margin-bottom: 30px;
+
+  .logo-icon {
+    font-size: 80px;
+    color: #FF6347;
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: 36px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #FF6347, #FFD700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+  }
+
+  p {
+    color: #E8D4B8;
+    font-size: 16px;
+    margin: 5px 0 0;
+  }
+}
+
+.register-card {
+  width: 100%;
+  max-width: 450px;
+  background: rgba(139, 26, 26, 0.3);
+  border: 1px solid rgba(255, 99, 71, 0.3);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+
+  ion-card-content {
+    padding: 30px;
+  }
+
+  h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #FFD700;
+    margin: 0 0 8px;
+    text-align: center;
+  }
+
+  .subtitle {
+    color: #E8D4B8;
+    font-size: 14px;
+    text-align: center;
+    margin: 0 0 25px;
+  }
+}
+
+.input-item {
+  --background: rgba(255, 255, 255, 0.05);
+  --border-radius: 12px;
+  --padding-start: 15px;
+  --padding-end: 15px;
+  border: 1px solid rgba(255, 99, 71, 0.3);
+  border-radius: 12px;
+  margin-bottom: 15px;
+
+  ion-icon {
+    color: #FF6347;
+    font-size: 20px;
+    margin-right: 10px;
+  }
+
+  ion-input {
+    --color: white;
+    --placeholder-color: #E8D4B8;
+  }
+
+  .eye-icon {
+    cursor: pointer;
+    color: #E8D4B8;
+
+    &:hover {
+      color: #FFD700;
+    }
+  }
+}
+
+.register-button {
+  --background: linear-gradient(135deg, #D32F2F, #FF6347);
+  --border-radius: 12px;
+  height: 50px;
+  font-weight: 700;
+  font-size: 16px;
+  margin-top: 10px;
+  box-shadow: 0 10px 30px rgba(211, 47, 47, 0.4);
+}
+
+.login-section {
+  text-align: center;
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 99, 71, 0.2);
+
+  p {
+    color: #E8D4B8;
+    font-size: 14px;
+    margin: 0 0 15px;
+  }
+
+  ion-button {
+    --border-color: rgba(255, 99, 71, 0.4);
+    --color: #FFD700;
+    --border-radius: 12px;
+    height: 45px;
+    font-weight: 600;
+  }
+}
+
+@media (max-width: 600px) {
+  .register-header {
+    .logo-icon {
+      font-size: 60px;
+    }
+
+    h1 {
+      font-size: 28px;
+    }
+  }
+
+  .register-card ion-card-content {
+    padding: 20px;
+  }
+}

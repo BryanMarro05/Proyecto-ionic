@@ -1,5 +1,7 @@
+<!-- src/app/pages/inicio/inicio.page.html -->
+
 <ion-header>
-  <ion-toolbar color="danger">
+  <ion-toolbar color="charlie">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -7,9 +9,15 @@
     <ion-title>Inicio</ion-title>
 
     <ion-buttons slot="end">
+      <!-- Botón de Login (si NO está logueado) -->
+      <ion-button *ngIf="!isLoggedIn" routerLink="/login" fill="clear">
+        <ion-icon slot="icon-only" name="person-circle-outline"></ion-icon>
+      </ion-button>
+
+      <!-- Botón de Carrito (siempre visible) -->
       <ion-button routerLink="/carrito" fill="clear">
         <ion-icon name="cart"></ion-icon>
-        <ion-badge *ngIf="getCartCount() > 0" color="primary">
+        <ion-badge *ngIf="getCartCount() > 0" color="danger">
           {{ getCartCount() }}
         </ion-badge>
       </ion-button>
